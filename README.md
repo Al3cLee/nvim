@@ -1,4 +1,9 @@
-# 💤 LazyVim
+# nvim
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+My NeoVim setup folder. I use [LazyVim](https://lazyvim.org)
+with the [WezTerm](https://wezterm.org) terminal emulator.
+
+Notably, in `lua/typst_math.lua` I defined a helper that
+uses `treesitter` parsing tools to determine whether
+the cursor is inside a `typst` math environment, thus
+enabling math-only snippets (see `lua/plugins/luasnip.lua`).
