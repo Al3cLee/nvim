@@ -46,4 +46,4 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 })
 
 vim.lsp.enable("julials")
-vim.cmd("colorscheme kanagawa")
+vim.cmd.colorscheme("kanagawa-paper")
