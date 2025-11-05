@@ -47,3 +47,12 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
 vim.lsp.enable("julials")
 vim.cmd.colorscheme("kanagawa-paper")
+
+vim.keymap.set("n", "<leader>op", function()
+  -- Use NeoVim API to get the directory name of
+  -- the current buffer
+  local path = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
+  print(path)
+  -- or copy to clipboard:
+  vim.fn.setreg("+", path)
+end, { desc = "Show/copy current file path" })

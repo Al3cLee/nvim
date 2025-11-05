@@ -10,10 +10,14 @@ return {
   config = function()
     -- Configure markdownlint-cli2 to use custom config file
     -- located in Neovim's config directory
-    -- with syntax inspired by https://github.com/mfussenegger/nvim-lint#customize-built-in-linters
+    -- with syntax inspired by
+    -- https://github.com/mfussenegger/nvim-lint#custom-linters
+    -- and https://github.com/mfussenegger/nvim-lint#customize-built-in-linters
     require("lint").linters["markdownlint-cli2"].args = {
       "--config",
       -- For how to write config files see https://github.com/DavidAnson/markdownlint-cli2#configuration
+      -- and specifically, the example file
+      -- https://github.com/DavidAnson/markdownlint-cli2/blob/main/test/markdownlint-cli2-yaml-example/.markdownlint-cli2.yaml
       HOME .. "/.config/nvim/.markdownlint-cli2.yaml",
       -- The following `--` indicates that stuff before it are options, not args
       "--",

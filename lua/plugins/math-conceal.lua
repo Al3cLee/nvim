@@ -8,9 +8,9 @@ return {
     enabled = true,
     conceal = {
       "greek",
-      "script",
-      "math",
-      "font",
+      -- "script",
+      -- "math",
+      -- "font",
       "delim",
       "phy",
     },
