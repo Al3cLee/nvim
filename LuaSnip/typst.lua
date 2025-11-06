@@ -1,3 +1,6 @@
+-- Navigate this file by searching for `#`
+-- Requirements:
+--     https://typst.app/universe/package/physica
 local cond = require("typst_math") -- adjust require path
 local ls = require("luasnip")
 local s, t, i = ls.snippet, ls.text_node, ls.insert_node
@@ -9,7 +12,7 @@ local rep = require("luasnip.extras").rep
 
 return {
 
-  --  basic symbols
+  -- # basic symbols
 
   s(
     { wordTrig = false, trig = "hr", dscr = "higher text", snippetType = "autosnippet", condition = cond.in_typst_math },
@@ -98,7 +101,7 @@ return {
       t({ '"e"' }),
     }
   ),
-  -- Regex expansions
+  -- # Regex expansions
 
   s(
     {
