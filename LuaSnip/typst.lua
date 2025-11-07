@@ -54,13 +54,13 @@ return {
     t({ "^(dagger)" }),
   }),
 
-  s({ wordTrig = false, trig = "lm", dscr = "inline math", snippetType = "autosnippet" }, {
+  s({ wordTrig = false, trig = "lmath", dscr = "inline math", snippetType = "autosnippet" }, {
     t({ "$" }),
     i(1),
     t({ "$" }),
   }),
 
-  s({ wordTrig = false, trig = "dm", dscr = "display math", snippetType = "autosnippet" }, {
+  s({ wordTrig = false, trig = "dmath", dscr = "display math", snippetType = "autosnippet" }, {
     t({ "$ " }),
     i(1),
     t({ " $" }),
