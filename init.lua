@@ -45,7 +45,11 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   end,
 })
 
-vim.lsp.enable("julials")
+-- Set up `julials` manually, since the Julia language server is not a binary and
+-- cannot be managed very well by mason.nvim.
+-- See https://www.andersevenrud.net/neovim.github.io/lsp/configurations/julials/
+require("lspconfig").julials.setup({})
+
 vim.cmd.colorscheme("kanagawa-paper")
 
 vim.keymap.set("n", "<leader>op", function()
