@@ -12,6 +12,12 @@
               base_level:1,
               separator:[*.* ],
               fill: rgb("#eeecec"))
+#let notation = thmbox(
+        "theorem",
+              "Notation",
+              base_level:1,
+              separator:[*.* ],
+              fill: rgb("#eeecec"))
 #let remark = thmplain.with(inset: (left:0pt,right:0pt))(
               "theorem",
               "Remark",
