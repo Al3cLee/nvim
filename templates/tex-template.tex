@@ -1,0 +1,65 @@
+\documentclass{article}
+
+% document structure
+\usepackage[hidelinks]{hyperref}
+\usepackage{csquotes}
+% \blockcquote{⟨key⟩}{⟨text⟩}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{ref.bib}
+\usepackage[margin=1in]{geometry}
+
+% advanced lists
+\usepackage{enumitem}
+\newlist{steps}{enumerate}{2}
+\setlist[steps]{label=\textit{Step \arabic*}., 
+leftmargin=*, ref = Step \arabic*}
+
+% fancy boxes
+\usepackage{tcolorbox}
+\newtcolorbox{graybox}{colback=gray!20!white, boxrule=0mm, sharp corners=all}
+
+% math formatting
+\usepackage{xcolor,dsfont,amsthm,amsfonts,mathtools,amsmath,physics}
+\usepackage[mathcal]{euscript}
+\theoremstyle{definition}
+\newtheorem{pos}{Postulate}[section]
+\newtheorem{res}{Result}[section]
+\newtheorem{mot}{Motivation}[section]
+\newtheorem{calc}{Calculation}[section]
+\newtheorem{rem}{Remark}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{recipe}{Recipe}[section]
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}{Lemma}[section]
+\numberwithin{equation}{section}
+
+\usepackage{cleveref}
+\crefname{figure}{fig.}{figs.}
+\crefname{equation}{eqn.}{eqns.}
+\crefname{dfn}{definition}{definitions}
+\crefname{mot}{motivation}{motivations}
+\crefname{thm}{theorem}{theorems}
+\crefname{lem}{lemma}{lemmas}
+\crefname{rem}{remark}{remarks}
+\crefname{calc}{calculation}{calculations}
+\crefname{res}{result}{results}
+\crefname{sec}{section}{sections}
+
+\author{Wentao Li}
+\begin{document}
+    
+\title{Title}
+
+\maketitle
+
+\begin{abstract}
+    Abstract paragraph for this note.
+\end{abstract}
+
+\tableofcontents
+
+Body text
+\printbibliography
+\end{document}
