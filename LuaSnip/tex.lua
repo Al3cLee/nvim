@@ -6,8 +6,75 @@ local d = ls.dynamic_node
 local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
+local greek_letters = {
+  "alpha",
+  "beta",
+  "gamma",
+  "delta",
+  "epsilon",
+  "zeta",
+  "eta",
+  "theta",
+  "iota",
+  "kappa",
+  "lambda",
+  "mu",
+  "nu",
+  "xi",
+  "omicron",
+  "pi",
+  "rho",
+  "sigma",
+  "tau",
+  "upsilon",
+  "phi",
+  "chi",
+  "psi",
+  "omega",
+  -- Uppercase variants
+  "Alpha",
+  "Beta",
+  "Gamma",
+  "Delta",
+  "Epsilon",
+  "Zeta",
+  "Eta",
+  "Theta",
+  "Iota",
+  "Kappa",
+  "Lambda",
+  "Mu",
+  "Nu",
+  "Xi",
+  "Omicron",
+  "Pi",
+  "Rho",
+  "Sigma",
+  "Tau",
+  "Upsilon",
+  "Phi",
+  "Chi",
+  "Psi",
+  "Omega",
+  -- Variant forms
+  "varepsilon",
+  "vartheta",
+  "varpi",
+  "varrho",
+  "varsigma",
+  "varphi",
+}
 
-return {
+local greek_snippets = {}
+for _, letter in ipairs(greek_letters) do
+  table.insert(
+    greek_snippets,
+    s(letter, {
+      t("\\" .. letter),
+    })
+  )
+end
+local snippets = {
 
   -- basic symbols
 
@@ -51,14 +118,14 @@ return {
     t({ "^{\\dagger}" }),
   }),
 
-  s({ wordTrig = false, trig = "lm", dscr = "inline math", snippetType = "autosnippet" }, {
-    t({ "$" }),
+  s({ wordTrig = false, regTrig = true, trig = "([^%a])lm", dscr = "inline math", snippetType = "autosnippet" }, {
+    t({ " $" }),
     i(1),
     t({ "$" }),
   }),
 
-  s({ wordTrig = false, trig = "dm", dscr = "display math", snippetType = "autosnippet" }, {
-    t({ "\\[" }),
+  s({ wordTrig = false, regTrig = true, trig = "([^%a])dm", dscr = "display math", snippetType = "autosnippet" }, {
+    t({ " \\[" }),
     i(1),
     t({ "\\]" }),
   }),
@@ -210,3 +277,7 @@ return {
     )
   ),
 }
+
+vim.list_extend(snippets, greek_snippets)
+
+return snippets
