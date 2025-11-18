@@ -9,3 +9,6 @@
 vim.api.nvim_create_user_command("TypstTemplate", function()
   vim.cmd("0r ~/.config/nvim/templates/note_template.typ")
 end, {})
+vim.api.nvim_create_user_command("TeXTemplate", function()
+  vim.cmd("0r ~/.config/nvim/templates/tex-template.tex")
+end, {})
