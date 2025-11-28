@@ -54,13 +54,13 @@ return {
     t({ "^(dagger)" }),
   }),
 
-  s({ wordTrig = false, regTrig = true, trig = "([^%a])lm", dscr = "inline math", snippetType = "autosnippet" }, {
+  s({ wordTrig = true, trig = "lm", dscr = "inline math", snippetType = "autosnippet" }, {
     t({ "$" }),
     i(1),
     t({ "$" }),
   }),
 
-  s({ wordTrig = false, regTrig = true, trig = "([^%a])dm", dscr = "display math", snippetType = "autosnippet" }, {
+  s({ wordTrig = true, trig = "dm", dscr = "display math", snippetType = "autosnippet" }, {
     t({ "$ " }),
     i(1),
     t({ " $" }),
@@ -190,6 +190,21 @@ return {
       condition = cond.in_typst_math,
     },
     fmta("hat(<>)", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    })
+  ),
+
+  s(
+    {
+      trig = "(%a+)(dt)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+      condition = cond.in_typst_math,
+    },
+    fmta("dot(<>)", {
       f(function(_, snip)
         return snip.captures[1]
       end),

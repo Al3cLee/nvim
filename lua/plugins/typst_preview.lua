@@ -6,6 +6,6 @@ return {
     -- Point this plugin to the `tinymist` version installed via `Mason`
     -- to avoid version conflicts.
     dependencies_bin = { ["tinymist"] = "tinymist" },
-    open_cmd = "open -a Safari %s",
+    -- open_cmd = "open -a Safari %s",
   }, -- lazy.nvim will implicitly calls `setup {}`
 }
