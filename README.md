@@ -28,3 +28,14 @@ of `LanguageServer.jl`. Apart from
 project-specific `.JuliaFormatter.toml` files,
 I also have a `~/.JuliaFormatter.toml` on my machine
 as a back-up.
+
+## Typst templates
+
+The file `https://github.com/Al3cLee/nvim/blob/main/templates/Typst_templates.typ`
+implements a Typst template file that allows
+
+- freely switching between `touying` and a regular document,
+- stand-alone compiling of child files, and
+- correct bibliography for both child files and the main file.
+
+See the comments in `Typst_templates.typ` for usage details.
