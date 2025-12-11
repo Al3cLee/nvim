@@ -54,6 +54,10 @@ return {
     t({ "^(dagger)" }),
   }),
 
+  s({ wordTrig = false, trig = "star", dscr = "star", snippetType = "autosnippet", condition = cond.in_typst_math }, {
+    t({ "^(star)" }),
+  }),
+
   s({ wordTrig = true, trig = "lm", dscr = "inline math", snippetType = "autosnippet" }, {
     t({ "$" }),
     i(1),
@@ -190,6 +194,21 @@ return {
       condition = cond.in_typst_math,
     },
     fmta("hat(<>)", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    })
+  ),
+
+  s(
+    {
+      trig = "(%a+)(cal)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+      condition = cond.in_typst_math,
+    },
+    fmta("cal(<>)", {
       f(function(_, snip)
         return snip.captures[1]
       end),

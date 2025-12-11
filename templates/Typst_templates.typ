@@ -1,62 +1,71 @@
 #import "@preview/touying:0.6.1": *
 #import themes.metropolis: *
 #import "@preview/ctheorems:1.1.3": *
-#import "@preview/physica:0.9.5": *
+#import "@preview/physica:0.9.7": *
 
 #let result = thmbox.with(padding: (top: 0em, bottom: 0em))(
         "theorem",
               "Result",
               base_level:1,
               separator:[*.* ],
-              stroke: rgb("#435965")+1pt,
+              fill: rgb("#ecece8"),
               radius:0pt,
-              breakable:true)
+              breakable:true,
+              )
 #let theorem = thmbox.with(padding: (top: 0em, bottom: 0em))(
         "theorem",
               "Theorem",
               base_level:1,
               separator:[*.* ],
-              stroke: rgb("#435965")+1pt,
+              fill: rgb("#ecece8"),
               radius:0pt,
-              breakable:true)
+              breakable:true,
+              )
 #let notation = thmbox.with(padding: (top: 0em, bottom: 0em))(
         "theorem",
               "Notation",
               base_level:1,
               separator:[*.* ],
-              stroke: rgb("#435965")+1pt,
+              fill: rgb("#ecece8"),
               radius:0pt,
-              breakable:true)
+              breakable:true,
+              )
 #let remark = thmplain.with(inset: (left:0pt,right:0pt))(
               "theorem",
               "Remark",
               base_level:1,
-              separator:". ")
+              separator:". ",
+              )
 #let definition = thmplain.with(inset: (left:0pt,right:0pt))(
               "theorem",
               "Definition",
               base_level:1,
-              separator:". ")
+              separator:". ",
+              )
 #let motivation = thmplain.with(inset: (left:0pt,right:0pt))(
               "theorem",
               "Motivation",
               base_level:1,
-              separator:". ")
+              separator:". ",
+              )
 #let example = thmplain.with(inset: (left:0pt,right:0pt,top:0pt))(
               "theorem",
               "Example",
               base_level:1,
-              separator:". ")
+              separator:". ",
+              )
 
 // Custom `graybox` environment.
-#let graybox(x)= pad(top: 0.5em,bottom: 0.5em)[#block(
-      fill: rgb("#eeecec"),  // Light grey background
+#let graybox(x)= block(
+      fill: rgb("#ecece8"),  // Light grey background
       // stroke: rgb("#cccccc"), // Grey border
-      radius: 0.3em,           // Rounded corners
+      radius: 0pt,           // Rounded corners
       inset: 1.2em,           // Padding inside the box
       width: 100%,           // Full width
+      breakable: true,
       [#x]
-)]
+)
+
 
 // Custom solution environment for homework.
 #let solution(x)= [
@@ -113,14 +122,22 @@
       primary-light: rgb("#f2ecbc"), // lotusWhite3
       secondary: rgb("#435965"), // dragonBlue5
       neutral-lightest: rgb("#fafafa"),
-      neutral-dark: rgb("#658594"), // dragonBlue
-      neutral-darkest: rgb("#0d0c0c"), // dragonBlack0
+      neutral-dark: black,
+      neutral-darkest: black,
     ),
     // config-common(handout: true)
     // uncomment the above line to remove all animation sub-slides
     )
     #show: thmrules
     #set heading(numbering: "1.1.")
+    #set footnote(numbering: "*")
+    #show raw: set text(font: "Fira Code")
+    #show raw.where(block: true): block.with(
+      fill: rgb("#f5f5f5"),     // Light gray background
+      inset: 1.2em,               // Padding inside
+      width: 100%,              // Full width
+      radius: 0pt,               // Rounded corners (optional)
+    )
     #set math.equation(numbering: "(1)")
     #set text(size: 18pt, font: "Lato")
     #set par(justify: true)
@@ -196,7 +213,7 @@
 
 
     // Set document title and its appearance
-    #set document(title: [Representation Quadric], date: auto)
+    #set document(title: [Title], date: auto)
     #show title: it => [#align(center,it)]
     #title()
 
