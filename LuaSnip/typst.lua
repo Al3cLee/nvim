@@ -70,6 +70,12 @@ return {
     t({ " $" }),
   }),
 
+  s({ wordTrig = true, trig = "vb", dscr = "verbose block", snippetType = "autosnippet" }, {
+    t({ "```", "" }),
+    i(1),
+    t({ "", "```" }),
+  }),
+
   s({ wordTrig = false, trig = "ev", dscr = "expval", snippetType = "autosnippet", condition = cond.in_typst_math }, {
     t({ "expval(" }),
     i(1),

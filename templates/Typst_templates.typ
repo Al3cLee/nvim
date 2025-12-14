@@ -191,9 +191,10 @@
     
     // Mimic LaTeX look.
     // #set text(font: "New Computer Modern")
+    #set text(size:12pt)
     #set par(
             leading: 0.5em, 
-            spacing: 1em, 
+            spacing: 1.2em, 
             first-line-indent: 2em, 
             justify: true)
     #show heading: set block(above: 1em, below: 1em)
@@ -205,11 +206,21 @@
     // Gray box and font setting for code blocks.
     #show raw: set text(font: "Fira Code")
     #show raw.where(block: true): block.with(
-      fill: rgb("#f5f5f5"),     // Light gray background
+      fill: luma(240),     // Light gray background
       inset: 1.2em,               // Padding inside
       width: 100%,              // Full width
       radius: 0pt,               // Rounded corners (optional)
     )
+
+    #show raw.where(block: false): it => {
+    let code_text = text(font:"Fira Code", it.text)
+      box(
+        fill: luma(235),          // light grey background
+        inset: (x: 0.2em, y: 0em), // tiny vertical padding to avoid line height change
+        outset: (y:0.3em),
+        radius: 0em,               // no rounded corners
+      )[#code_text]
+    }
 
 
     // Set document title and its appearance

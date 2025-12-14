@@ -3,11 +3,6 @@
 My NeoVim setup folder. I use [LazyVim](https://lazyvim.org)
 with the [WezTerm](https://wezterm.org) terminal emulator.
 
-Notably, in [`lua/typst_math.lua`](https://github.com/Al3cLee/nvim/tree/main/lua/typst_math.lua) I defined a helper that
-uses `treesitter` parsing tools to determine whether
-the cursor is inside a `typst` math environment, thus
-enabling math-only snippets (see [`LuaSnip/typst.lua`](https://github.com/Al3cLee/nvim/tree/main/LuaSnip/typst.lua)).
-
 ## Requirements
 
 This setup should be mostly re-producible,
@@ -39,3 +34,14 @@ implements a Typst template file that allows
 - correct bibliography for both child files and the main file.
 
 See the comments in `Typst_templates.typ` for usage details.
+
+## LuaSnip
+
+In [`lua/typst_math.lua`](https://github.com/Al3cLee/nvim/tree/main/lua/typst_math.lua) I defined a module that
+uses `treesitter` parsing tools to determine whether
+the cursor is inside a `typst` math environment, thus
+enabling math-only snippets (see [`LuaSnip/typst.lua`](https://github.com/Al3cLee/nvim/tree/main/LuaSnip/typst.lua)).
+
+A similar treatment is applied to Markdown files
+in `lua/markdown_math.lua` and
+`LuaSnip/markdown.lua`.
