@@ -26,14 +26,29 @@ as a back-up.
 
 ## Typst templates
 
-The file `https://github.com/Al3cLee/nvim/blob/main/templates/Typst_templates.typ`
+The file [templates/Typst_templates.typ](https://github.com/Al3cLee/nvim/blob/main/templates/Typst_templates.typ)
 implements a Typst template file that allows
 
 - freely switching between `touying` and a regular document,
 - stand-alone compiling of child files, and
 - correct bibliography for both child files and the main file.
 
+Among these, the main difficulty was to avoid
+multiple-bibliography conflict while still suppressing
+missing-citation warnings in child files.
+This was achieved under the guidance provided
+in [this forum post](https://forum.typst.app/t/how-to-share-bibliography-in-a-multi-file-setup/1605/9).
+
 See the comments in `Typst_templates.typ` for usage details.
+The mental model is that, in a project,
+
+- the `preamble.typ` file stores functions and templates to map contents to formatted output,
+- some `child.typ` files store contents and nothing else, and
+- the `main.typ` file decides which templates among `preamble.typ` to use, and which `child.typ` contents to `include`.
+
+This way, `child` files can be re-used in different projects without modification.
+To switch from a traditional document to a `touying` project, one only needs to change the `#show` line
+in `main.typ` from showing the document template to showing the `touying` template.
 
 ## LuaSnip
 
