@@ -55,6 +55,8 @@ To set up this multi-file structure, do the following.
 0. Every file needs to have
 
    #import "preamble.typ"
+   where preamble.typ is
+   a copy of Typst_templates.typ
 
 1. Without bibliography,
 
