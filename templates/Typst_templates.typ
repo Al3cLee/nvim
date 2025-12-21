@@ -2,6 +2,7 @@
 #import themes.metropolis: *
 #import "@preview/ctheorems:1.1.3": *
 #import "@preview/physica:0.9.7": *
+#let df(x) = dd(x) + sym.space.thin
 
 #let result = thmbox.with(padding: (top: 0em, bottom: 0em))(
         "theorem",
@@ -21,14 +22,11 @@
               radius:0pt,
               breakable:true,
               )
-#let notation = thmbox.with(padding: (top: 0em, bottom: 0em))(
-        "theorem",
+#let notation = thmplain.with(inset: (left:0pt,right:0pt))(
+              "theorem",
               "Notation",
               base_level:1,
-              separator:[*.* ],
-              fill: rgb("#ecece8"),
-              radius:0pt,
-              breakable:true,
+              separator:". ",
               )
 #let remark = thmplain.with(inset: (left:0pt,right:0pt))(
               "theorem",
@@ -143,7 +141,7 @@
     #set par(justify: true)
     #show heading.where(level:1): set text(weight: "regular")
     
-    #title-slide()
+    // #title-slide()
     
     #doc
     
@@ -169,7 +167,6 @@
 // and there is no need to alter child files!
 #let template-doc(doc)= [
     #show: thmrules
-    #set page(paper: "a4", numbering: "1 of 1")
     #show heading.where(level: 1): it => {
       counter(math.equation).update(0)
       it
@@ -191,7 +188,7 @@
     
     // Mimic LaTeX look.
     // #set text(font: "New Computer Modern")
-    #set text(size:12pt)
+    #set text(size:10pt)
     #set par(
             leading: 0.5em, 
             spacing: 1.2em, 
@@ -200,8 +197,8 @@
     #show heading: set block(above: 1em, below: 1em)
     
     // Color for links, disable for printing in black&white.
-    #show link: set text(fill: maroon)
-    #show ref: set text(fill: maroon)
+    #show link: set text(fill: rgb("#cc6d00"))
+    #show ref: set text(fill: rgb("#cc6d00"))
     
     // Gray box and font setting for code blocks.
     #show raw: set text(font: "Fira Code")
@@ -223,6 +220,13 @@
     }
 
 
+    #doc
+ 
+    // #load-bib(main: false)
+]
+
+#let template-doc-main(main-doc) = [
+    #set page(paper: "a4", numbering: "1 of 1")
     // Set document title and its appearance
     #set document(title: [Title], date: auto)
     #show title: it => [#align(center,it)]
@@ -233,9 +237,7 @@
     #datetime.today().display("[month repr:short] [day padding:none], [year]")
     ]
     #block(height: 0.5em)
-    #doc
- 
-    // #load-bib(main: false)
+    #main-doc
 ]
 
 #let bib-child(child-doc) = [

@@ -24,7 +24,7 @@ return {
   ),
 
   s(
-    { wordTrig = false, trig = "lr", dscr = "lower text", snippetType = "autosnippet", condition = cond.in_typst_math },
+    { wordTrig = false, trig = "lw", dscr = "lower text", snippetType = "autosnippet", condition = cond.in_typst_math },
     {
       t({ "_(" }),
       i(1),
@@ -58,6 +58,13 @@ return {
     t({ "^(star)" }),
   }),
 
+  s(
+    { wordTrig = false, trig = "input", dscr = "input", snippetType = "autosnippet", condition = cond.in_typst_math },
+    {
+      t({ "( bullet )" }),
+    }
+  ),
+
   s({ wordTrig = true, trig = "lm", dscr = "inline math", snippetType = "autosnippet" }, {
     t({ "$" }),
     i(1),
@@ -70,16 +77,14 @@ return {
     t({ " $" }),
   }),
 
+  s({ wordTrig = true, trig = "wrt", dscr = "with respect to", snippetType = "autosnippet" }, {
+    t({ "with respect to" }),
+  }),
+
   s({ wordTrig = true, trig = "vb", dscr = "verbose block", snippetType = "autosnippet" }, {
     t({ "```", "" }),
     i(1),
     t({ "", "```" }),
-  }),
-
-  s({ wordTrig = false, trig = "ev", dscr = "expval", snippetType = "autosnippet", condition = cond.in_typst_math }, {
-    t({ "expval(" }),
-    i(1),
-    t({ ")" }),
   }),
 
   s({ wordTrig = false, trig = "jia", dscr = "+", snippetType = "autosnippet", condition = cond.in_typst_math }, {
