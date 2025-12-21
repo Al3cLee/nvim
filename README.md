@@ -43,12 +43,43 @@ See the comments in `Typst_templates.typ` for usage details.
 The mental model is that, in a project,
 
 - the `preamble.typ` file stores functions and templates to map contents to formatted output,
-- some `child.typ` files store contents and nothing else, and
-- the `main.typ` file decides which templates among `preamble.typ` to use, and which `child.typ` contents to `include`.
+- some `child.typ` files store contents, and
+- the `main.typ` file collects various `child` files together via `#include`.
+
+I implemented the very opinionated approach where each child file can be
+compiled stand-alone without errors and in the same format as the main file.
+
+To set up this multi-file structure, do the following.
+
+```txt
+0. Every file needs to have
+
+   #import "preamble.typ"
+
+1. Without bibliography,
+
+   in main.typ: #show: template-TYPE-main
+   where TYPE = doc or touying
+
+   in child.typ: #show: template-TYPE
+
+2. With bibliography,
+
+   create ref.bib first,
+
+   do everything in 0) and 1),
+
+   in main.typ, #show: bib-main-TYPE
+
+   in child.typ, #show: bib-child
+```
 
 This way, `child` files can be re-used in different projects without modification.
-To switch from a traditional document to a `touying` project, one only needs to change the `#show` line
-in `main.typ` from showing the document template to showing the `touying` template.
+Because they have `bib-child` functions, their bibliographies
+will show up when compiled alone, and be suppressed when `main.typ` is compiled.
+It is _strongly advised_ to keep all contents in child files. For `touying` this structure
+does not allow contents in `main.typ`; for `doc` you can `#show: template-doc` in `main.typ`
+and write contents.
 
 ## LuaSnip
 

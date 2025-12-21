@@ -94,16 +94,26 @@
 // preamble.typ: same as this file `Typst_templates.typ`, providing
 // custom functions and templates.
 //
-// main.typ: `#import preamble.typ: *`,
-// `#show: template-touying`, `#show: bib-main-touying`,
-// CONTENTS, [`#include "child.typ"`]
+// main.typ:
+// #import "preamble.typ": *
+// [#show: bib-main-touying]
+// [#show: template-touying] // show this if you insist on writing contents in main.typ
+// #include "cover.typ"
+// #include "child.typ"
 //
-// [child.typ]: `#import preamble.typ: *`,
-// `#show: bib-child`, CONTENTS
+// cover.typ:
+// #import "preamble.typ": *
+// #show: template-touying
+// [#show: bib-child]
+// #title-slide()
 //
-// Fun fact: to switch between a doc and a touying,
-// simply replace the words `touying` in the show rules of `main.typ` with `doc`,
-// and there is no need to alter child files!
+// child.typ:
+// #import "preamble.typ": *
+// #show: template-touying
+// [#show: bib-child]
+// CONTENTS
+
+#let template-touying-main(doc) = [#doc] // this is trivial, just to align with template-doc structure
 #let template-touying(doc) = [
     #show: metropolis-theme.with(footer-progress: false, aspect-ratio: "16-9", 
     config-info(title: par(text(size: 1.5em)[Title of this Talk]),
@@ -152,19 +162,24 @@
 //
 // Usage:
 //
-// preamble.typ: same as this file `Typst_templates.typ`, providing
+// preamble.typ:
+// same as this file `Typst_templates.typ`, providing
 // custom functions and templates.
 //
-// main.typ: `#import preamble.typ: *`,
-// `#show: template-doc`, `#show: bib-main-doc`,
-// CONTENTS, [`#include "child.typ"`]
+// main.typ:
+// #import "preamble.typ": *
+// [#show: template-doc] // only show this if you have contents in main.typ
+// #show: template-doc-main // go to this function's definition to change document title
+// [#show: bib-main-doc]
+// [CONTENTS]
+// [#include "child.typ"]
 //
-// [child.typ]: `#import preamble.typ: *`,
-// `#show: bib-child`, CONTENTS
+// [child.typ]:
+// #import "preamble.typ": *
+// #show: template-doc
+// [#show: bib-child]
+// CONTENTS
 //
-// Fun fact: to switch between a doc and a touying,
-// simply replace the words `doc` in the show rules of `main.typ` with `touying`,
-// and there is no need to alter child files!
 #let template-doc(doc)= [
     #show: thmrules
     #show heading.where(level: 1): it => {
