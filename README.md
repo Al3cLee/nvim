@@ -38,6 +38,9 @@ multiple-bibliography conflict while still suppressing
 missing-citation warnings in child files.
 This was achieved under the guidance provided
 in [this forum post](https://forum.typst.app/t/how-to-share-bibliography-in-a-multi-file-setup/1605/9).
+Note, however, that the function `load-bib` provided
+there needs a small change; see my
+`Typst_templates.typ` for details.
 
 See the comments in `Typst_templates.typ` for usage details.
 The mental model is that, in a project,
