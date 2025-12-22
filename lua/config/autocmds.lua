@@ -15,3 +15,14 @@ end, {})
 vim.api.nvim_create_user_command("YankAll", function()
   vim.cmd("%y")
 end, {})
+
+-- Force clear navic backgrounds every time colorscheme changes
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "ef-cyprus",
+  callback = function()
+    local navic_groups = vim.fn.getcompletion("Navic", "highlight")
+    for _, group in ipairs(navic_groups) do
+      vim.api.nvim_set_hl(0, group, { bg = "NONE" })
+    end
+  end,
+})
