@@ -49,9 +49,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 -- cannot be managed very well by mason.nvim.
 -- See https://www.andersevenrud.net/neovim.github.io/lsp/configurations/julials/
 require("lspconfig").julials.setup({})
-
-vim.cmd.colorscheme("kanagawa-paper")
-
+vim.cmd.colorscheme("ef-Cyprus") -- or specify a theme like ef-elea-dark
 vim.keymap.set("n", "<leader>op", function()
   -- Use NeoVim API to get the directory name of
   -- the current buffer
