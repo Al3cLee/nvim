@@ -1,6 +1,7 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
+vim.cmd.colorscheme("ef-cyprus")
 -- Somewhere in your Neovim startup, e.g. init.lua
 require("luasnip").config.set_config({ -- Setting LuaSnip config
 
@@ -57,4 +58,3 @@ vim.keymap.set("n", "<leader>op", function()
   -- or copy to clipboard:
   vim.fn.setreg("+", path)
 end, { desc = "Show/copy current file path" })
-vim.cmd.colorscheme("ef-cyprus") -- or specify a theme like ef-elea-dark
