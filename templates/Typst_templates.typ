@@ -75,7 +75,7 @@
 
   context if main {
     [#bibliography("ref.bib",title:title) <main-bib>]
-  } else if query(<main-bib>) == () and counter("bibs").get().first() == 1 {
+  } else if query(<main-bib>) == () {
     // This is the first bibliography, and there is no main bibliography
     bibliography("ref.bib",title:title)
   }
@@ -150,6 +150,9 @@
     #set text(size: 18pt, font: "Lato")
     #set par(justify: true)
     #show heading.where(level:1): set text(weight: "regular")
+    // Color for links, disable for printing in black&white.
+    #show link: set text(fill: rgb("#cc6d00"))
+    #show ref: set text(fill: rgb("#cc6d00"))
     
     // #title-slide()
     
