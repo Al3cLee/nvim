@@ -1,7 +1,6 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
-vim.cmd.colorscheme("ef-cyprus")
 -- Somewhere in your Neovim startup, e.g. init.lua
 require("luasnip").config.set_config({ -- Setting LuaSnip config
 
@@ -38,6 +37,8 @@ end, { silent = true })
 
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/LuaSnip/" })
 
+-- require("mini.statusline").setup()
+vim.cmd.colorscheme("ef-cyprus")
 -- Disable treesitter indentexpr for typst files
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = "*.typ",

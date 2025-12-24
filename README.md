@@ -26,7 +26,7 @@ as a back-up.
 
 ## Typst templates
 
-The file [templates/Typst_templates.typ](https://github.com/Al3cLee/nvim/blob/main/templates/Typst_templates.typ)
+The file [templates/typst_templates.typ](https://github.com/Al3cLee/nvim/blob/main/templates/typst_templates.typ)
 implements a Typst template file that allows
 
 - freely switching between `touying` and a regular document,
@@ -40,9 +40,9 @@ This was achieved under the guidance provided
 in [this forum post](https://forum.typst.app/t/how-to-share-bibliography-in-a-multi-file-setup/1605/9).
 Note, however, that the function `load-bib` provided
 there needs a small change; see my
-`Typst_templates.typ` for details.
+`typst_templates.typ` for details.
 
-See the comments in `Typst_templates.typ` for usage details.
+See the comments in `typst_templates.typ` for usage details.
 The mental model is that, in a project,
 
 - the `preamble.typ` file stores functions and templates to map contents to formatted output,
@@ -59,7 +59,7 @@ To set up this multi-file structure, do the following.
 
    #import "preamble.typ"
    where preamble.typ is
-   a copy of Typst_templates.typ
+   a copy of typst_templates.typ
 
 1. Without bibliography,
 

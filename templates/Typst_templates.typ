@@ -139,7 +139,7 @@
     #show: thmrules
     #set heading(numbering: "1.1.")
     #set footnote(numbering: "*")
-    #show raw: set text(font: "Fira Code")
+    #show raw: set text(font: "JetBrains Mono")
     #show raw.where(block: true): block.with(
       fill: rgb("#f5f5f5"),     // Light gray background
       inset: 1.2em,               // Padding inside
