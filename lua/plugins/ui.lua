@@ -2,7 +2,7 @@ return {
   "nvim-lualine/lualine.nvim",
   opts = {
     sections = {
-      lualine_c = { { 'navic' } }, -- Show function name
+      lualine_c = { "filename" }, -- Show function name
     },
   },
 }

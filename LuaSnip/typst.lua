@@ -54,10 +54,6 @@ return {
     t({ "^(dagger)" }),
   }),
 
-  s({ wordTrig = false, trig = "star", dscr = "star", snippetType = "autosnippet", condition = cond.in_typst_math }, {
-    t({ "^(star)" }),
-  }),
-
   s(
     { wordTrig = false, trig = "input", dscr = "input", snippetType = "autosnippet", condition = cond.in_typst_math },
     {

@@ -219,7 +219,7 @@
     #show ref: set text(fill: rgb("#cc6d00"))
     
     // Gray box and font setting for code blocks.
-    #show raw: set text(font: "Fira Code")
+    #show raw: set text(font: "JetBrains Mono")
     #show raw.where(block: true): block.with(
       fill: luma(240),     // Light gray background
       inset: 1.2em,               // Padding inside
@@ -228,7 +228,7 @@
     )
 
     #show raw.where(block: false): it => {
-    let code_text = text(font:"Fira Code", it.text)
+    let code_text = text(font:"JetBrains Mono", it.text)
       box(
         fill: luma(235),          // light grey background
         inset: (x: 0.2em, y: 0em), // tiny vertical padding to avoid line height change
