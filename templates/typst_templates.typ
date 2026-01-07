@@ -77,7 +77,6 @@
   context if main {
     [#bibliography("ref.bib",title:title) <main-bib>]
   } else if query(<main-bib>) == () {
-    // This is the first bibliography, and there is no main bibliography
     bibliography("ref.bib",title:title)
   }
 }
@@ -89,30 +88,6 @@
 ]
 
 // Touying template for main file.
-//
-// Usage:
-//
-// preamble.typ: same as this file `Typst_templates.typ`, providing
-// custom functions and templates.
-//
-// main.typ:
-// #import "preamble.typ": *
-// [#show: bib-main-touying]
-// [#show: template-touying] // show this if you insist on writing contents in main.typ
-// #include "cover.typ"
-// #include "child.typ"
-//
-// cover.typ:
-// #import "preamble.typ": *
-// #show: template-touying
-// [#show: bib-child]
-// #title-slide()
-//
-// child.typ:
-// #import "preamble.typ": *
-// #show: template-touying
-// [#show: bib-child]
-// CONTENTS
 
 #let template-touying-main(doc) = [#doc] // this is trivial, just to align with template-doc structure
 #let template-touying(doc) = [
@@ -163,27 +138,7 @@
 ]
 
 // Document template for main file.
-//
-// Usage:
-//
-// preamble.typ:
-// same as this file `Typst_templates.typ`, providing
-// custom functions and templates.
-//
-// main.typ:
-// #import "preamble.typ": *
-// [#show: template-doc] // only show this if you have contents in main.typ
-// #show: template-doc-main // go to this function's definition to change document title
-// [#show: bib-main-doc]
-// [CONTENTS]
-// [#include "child.typ"]
-//
-// [child.typ]:
-// #import "preamble.typ": *
-// #show: template-doc
-// [#show: bib-child]
-// CONTENTS
-//
+
 #let template-doc(doc)= [
     #show: thmrules
     #show heading.where(level: 1): it => {
