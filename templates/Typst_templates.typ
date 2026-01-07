@@ -3,6 +3,7 @@
 #import "@preview/ctheorems:1.1.3": *
 #import "@preview/physica:0.9.7": *
 #let df(x) = dd(x) + sym.space.thin
+#let uid = [\u{1d7d9}] // use Unicode for the id operator
 
 #let result = thmbox.with(padding: (top: 0em, bottom: 0em))(
         "theorem",
@@ -255,6 +256,7 @@
     #datetime.today().display("[month repr:short] [day padding:none], [year]")
     ]
     #block(height: 0.5em)
+    #set text(size:10pt)
     #main-doc
 ]
 
@@ -268,6 +270,10 @@
     #load-bib(main:true)
 ]
 
+// bib slides for the main touying file.
+// This is reserved for single-file setup;
+// in multiple-file setup, use a dedicated bib.typ
+// child file.
 #let bib-main-touying(main-slide) = [
     #main-slide
     #bib-slide()

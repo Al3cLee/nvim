@@ -292,7 +292,7 @@ local snippets = {
   ),
 
   s(
-    { trig = "env", snippetType = "autosnippet" },
+    { trig = "env" },
     fmta(
       [[
       \begin{<>}

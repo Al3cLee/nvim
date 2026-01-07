@@ -24,7 +24,7 @@ return {
   ),
 
   s(
-    { wordTrig = false, trig = "lw", dscr = "lower text", snippetType = "autosnippet", condition = cond.in_typst_math },
+    { wordTrig = false, trig = "lr", dscr = "lower text", snippetType = "autosnippet", condition = cond.in_typst_math },
     {
       t({ "_(" }),
       i(1),

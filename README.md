@@ -41,48 +41,136 @@ in [this forum post](https://forum.typst.app/t/how-to-share-bibliography-in-a-mu
 Note, however, that the function `load-bib` provided
 there needs a small change; see my
 `typst_templates.typ` for details.
+The counter for `bibs` should not update itself,
+so I removed the condition `counter("bibs").get().first() == 1`.
 
-See the comments in `typst_templates.typ` for usage details.
 The mental model is that, in a project,
 
 - the `preamble.typ` file stores functions and templates to map contents to formatted output,
 - some `child.typ` files store contents, and
 - the `main.typ` file collects various `child` files together via `#include`.
 
-I implemented the very opinionated approach where each child file can be
-compiled stand-alone without errors and in the same format as the main file.
+Specifically, the main file should **not** include any
+`show` rules; at least, its show rules should be orthogonal
+to those in child files.
 
-To set up this multi-file structure, do the following.
+I implemented the (very opinionated) approach where each child file can be
+compiled stand-alone without errors, and
+look exactly the same as the main file
+(except for the numberings, of course).
+This approach is motivated by my enthusiasm to
+atomize my notes:
+I try to write short notes and then combine them
+when I need to.
+For reasons why this is beneficial,
+see this page: [Atomic Notes](https://wentaoli.xyz/atomic_notes).
 
-```txt
-0. Every file needs to have
+The setup for regular documents and `touying` files
+are slightly different.
+This is because:
+in a child file, setting show rules related to page size
+causes page breaks in the main document,
+but I don't necessarily want page breaks
+between child files,
+while in `touying` documents,
+page breaks are just new slides, which are acceptable.
+Therefore, I set the page size and numberings
+in the main file for regular documents,
+while `touying` documents have main files that
+do not `show` anything.
 
-   #import "preamble.typ"
-   where preamble.typ is
-   a copy of typst_templates.typ
+---
 
-1. Without bibliography,
+Below is a minimum working example for regular documents.
+Each file needs to import the preamble
+and specify a show rule.
+For bibliography integration, an additional show rule is needed.
 
-   in main.typ: #show: template-TYPE-main
-   where TYPE = doc or touying
-
-   in child.typ: #show: template-TYPE
-
-2. With bibliography,
-
-   create ref.bib first,
-
-   do everything in 0) and 1),
-
-   in main.typ, #show: bib-main-TYPE
-
-   in child.typ, #show: bib-child
+```typst
+// preamble.typ
+// This should be exactly the same as
+// templates/typst_templates.typ.
+// You can use the vim command :TypstTemplate
+// to paste that file if you use this setup.
 ```
 
-This way, `child` files can be re-used in different projects without modification.
-Because they have `bib-child` functions, their bibliographies
-will show up when compiled alone, and be suppressed when `main.typ` is compiled.
-It is _strongly advised_ to keep all contents in child files. For `touying` this structure
+```typst
+// main.typ
+#import "preamble.typ": *
+#show: template-doc-main
+#show: bib-main-doc // Use this line if you have bibliography
+
+#include "child.typ"
+```
+
+```typst
+// child.typ
+#import "preamble.typ": *
+#show: template-doc
+#show: bib-child
+
+#lorem(30) // Random text
+```
+
+---
+
+For `touying` files, a minimal setup is
+
+```typst
+// preamble.typ
+// This is the same as
+// templates/typst_templates.typ
+```
+
+```typst
+// main.typ
+#import "preamble.typ": *
+// This import is just for safety
+
+#include "cover.typ"
+#include "child_slide.typ"
+#include "bib_slide.typ"
+```
+
+```typst
+// cover.typ
+#import "preamble.typ": *
+#show: template-touying
+
+#title-slide()
+```
+
+```typst
+// child_slide.typ
+#import "preamble.typ": *
+#show: template-touying
+#show: bib-child
+
+= Section Title
+---
+// this means new slide in touying!
+// I use the metropolis theme,
+// which only creates new slides
+// for 2nd-level headers.
+// Therefore it is a must to
+// manually add "---" after 1st-level headers,
+// otherwise the text following this header
+// will be very big.
+```
+
+```typst
+// bib_slide.typ
+#import "preamble.typ": *
+#show: template-touying
+#show: bib-child // Actually, this line is not necessary
+
+#bib-slide()
+```
+
+---
+
+It is _strongly advised_ to keep all contents in child files
+in this multiple-file setup. For `touying` this structure
 does not allow contents in `main.typ`; for `doc` you can `#show: template-doc` in `main.typ`
 and write contents.
 

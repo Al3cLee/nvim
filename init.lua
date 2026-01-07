@@ -51,11 +51,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 -- cannot be managed very well by mason.nvim.
 -- See https://www.andersevenrud.net/neovim.github.io/lsp/configurations/julials/
 require("lspconfig").julials.setup({})
-vim.keymap.set("n", "<leader>op", function()
-  -- Use NeoVim API to get the directory name of
-  -- the current buffer
-  local path = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
-  print(path)
-  -- or copy to clipboard:
-  vim.fn.setreg("+", path)
-end, { desc = "Show/copy current file path" })
+
+vim.opt.spell = true -- Enable spellchecking
+vim.opt.spelllang = { "en", "cjk" } -- Set languages
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "NONE", bg = "NONE" })
