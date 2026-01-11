@@ -112,6 +112,12 @@ return {
       t({ '"e"' }),
     }
   ),
+
+  s({ wordTrig = false, trig = "ev", dscr = "expval", condition = cond.in_typst_math }, {
+    t({ "expval(" }),
+    i(1),
+    t({ ")" }),
+  }),
   -- # Regex expansions
 
   s(
@@ -166,6 +172,7 @@ return {
     {
       trig = "(%a+)(va)",
       regTrig = true,
+      priority = 100,
       wordTrig = false,
       snippetType = "autosnippet",
       condition = cond.in_typst_math,
