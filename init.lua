@@ -49,9 +49,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
 -- Set up `julials` manually, since the Julia language server is not a binary and
 -- cannot be managed very well by mason.nvim.
--- See https://www.andersevenrud.net/neovim.github.io/lsp/configurations/julials/
-require("lspconfig").julials.setup({})
-
+-- See https://github.com/julia-vscode/LanguageServer.jl/wiki/Vim-and-Neovim#vimlsp---new-api-in-neovim-011
+vim.lsp.enable("julials")
 vim.opt.spell = true -- Enable spellchecking
 vim.opt.spelllang = { "en", "cjk" } -- Set languages
 vim.api.nvim_set_hl(0, "WinSeparator", { fg = "NONE", bg = "NONE" })

@@ -3,7 +3,7 @@
 #import "@preview/ctheorems:1.1.3": *
 #import "@preview/physica:0.9.7": *
 #let df(x) = dd(x) + sym.space.thin
-#let uid = [\u{1d7d9}] // use Unicode for the id operator
+#let uid = [\u{1d7d9}] // use Unicode for the id operator 𝟙
 
 #let result = thmbox.with(padding: (top: 0em, bottom: 0em))(
         "theorem",

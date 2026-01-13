@@ -118,6 +118,15 @@ return {
     i(1),
     t({ ")" }),
   }),
+
+  s(
+    { wordTrig = false, trig = "at", dscr = "evaluated at", snippetType = "autosnippet", condition = cond.in_typst_math },
+    {
+      t({ "evaluated(" }),
+      i(1),
+      t({ ")" }),
+    }
+  ),
   -- # Regex expansions
 
   s(

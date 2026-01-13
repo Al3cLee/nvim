@@ -29,13 +29,20 @@ function M.in_typst_math()
   local node = current_node(bufnr, row, col)
   while node do
     local t = node:type()
-    -- matches: "math", "math_block", "inline_math", etc.
-    if t and t:find("math") then
-      return true
+    -- Exit math mode if inside string,
+    -- useful for annotations inside formulae,
+    -- e.g. $x = 0 "assuming" y<0$
+    if t:find("string") then
+      return false
+    else
+      -- Match "math", "math_block", "inline_math", etc.
+      if t and t:find("math") then
+        return true
+      end
+      node = node:parent()
     end
-    node = node:parent()
+    return false
   end
-  return false
 end
 
 function M.not_in_typst_math()
