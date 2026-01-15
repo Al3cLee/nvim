@@ -1,5 +1,6 @@
 return {
   "oonamo/ef-themes.nvim",
+  -- https://github.com/oonamo/ef-themes.nvim
   config = function()
     require("ef-themes").setup({
       light = "ef-cyprus", -- Ef-theme to select for light backgrounds

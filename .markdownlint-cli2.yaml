@@ -1,4 +1,4 @@
 config:
 # For a list of rules implemented by the linter, see
-#-https://github.com/DavidAnson/markdownlint/blob/v0.32.1/README.md#rules--aliases
+# https://github.com/DavidAnson/markdownlint/blob/v0.32.1/README.md#rules--aliases
   MD013: false
