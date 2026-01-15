@@ -12,21 +12,14 @@ This setup should be mostly re-producible,
 because I have a very limited amount of plugins, and
 most heavy-lifting is done by LazyVim.
 
-The `Julia` language support, however,
-requires additional care, because the Julia
-language server is a package instead of a binary,
-so it cannot be naively managed by `mason.nvim`.
+## Julia Language Server
 
-The language server is set up under instructions
-given in the
-[docs of nvim-lspconfig](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#julials),
-and the `julia-vim` plugin takes care of
-LaTeX-to-Unicode conversion.
-Formatting is provided by `JuliaFormatter`, a dependency
-of `LanguageServer.jl`. Apart from
-project-specific `.JuliaFormatter.toml` files,
-I also have a `~/.JuliaFormatter.toml` on my machine
-as a back-up.
+The Julia language server is provided by `JETLS.jl`, see
+[the docs](https://aviatesk.github.io/JETLS.jl/dev/)
+for details about setup.
+For configuration to work,
+the `root_markder` field needs to be specified
+in the Neovim setup of `JETLS`.
 
 ## Typst templates
 
