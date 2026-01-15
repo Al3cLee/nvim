@@ -1,6 +1,7 @@
 local M = {}
 
 local function current_node(bufnr, row, col)
+  -- Try to get the parser for the current buffer.
   local ok, parser = pcall(vim.treesitter.get_parser, bufnr, vim.bo[bufnr].filetype)
   if not ok or not parser then
     return nil
@@ -10,9 +11,7 @@ local function current_node(bufnr, row, col)
     return nil
   end
   local root = tree:root()
-  -- Use the if idiom of Lua to return the narrowest node
-  -- if `root` exists and `nil` if it does not, which means
-  -- the whole function `current_node` outputs really the current_node.
+  -- `return A and B or C` means: B if A=true, C otherwise.
   return root and root:named_descendant_for_range(row, col, row, col) or nil
 end
 
@@ -25,6 +24,12 @@ function M.in_typst_math()
   -- Get current_node, loop til its root and look for
   -- any node type containing "math".
   local pos = vim.api.nvim_win_get_cursor(0)
+  -- Upon :InspectTree we can see that
+  -- treesitter uses coordinates starting from 0.
+  -- But vim.api.nvim_win_get_cursor(0) gets
+  -- a cursor position which is (1,0)-indexed,
+  -- so we need to subtract 1 from the line number,
+  -- and the column number can be readily used.
   local row, col = pos[1] - 1, pos[2]
   local node = current_node(bufnr, row, col)
   while node do
