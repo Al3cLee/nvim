@@ -69,7 +69,7 @@ local greek_snippets = {}
 for _, letter in ipairs(greek_letters) do
   table.insert(
     greek_snippets,
-    s(letter, {
+    s({ trig = letter, wordTrig = false, condition = cond.in_markdown_math() }, {
       t("\\" .. letter),
     })
   )
@@ -148,14 +148,11 @@ local snippets = {
     t({ "$$" }),
   }),
 
-  s(
-    { wordTrig = false, trig = "ev", dscr = "expval", snippetType = "autosnippet", condition = cond.in_markdown_math },
-    {
-      t({ "\\langle " }),
-      i(1),
-      t({ " \\rangle" }),
-    }
-  ),
+  s({ wordTrig = false, trig = "ev", dscr = "expval", condition = cond.in_markdown_math }, {
+    t({ "\\langle " }),
+    i(1),
+    t({ " \\rangle" }),
+  }),
 
   s({ wordTrig = false, trig = "jia", dscr = "+", snippetType = "autosnippet", condition = cond.in_markdown_math }, {
     t({ "+" }),
@@ -194,6 +191,18 @@ local snippets = {
     condition = cond.in_markdown_math,
   }, {
     t({ "\\mathrm{e}" }),
+  }),
+
+  s({
+    wordTrig = true,
+    trig = "txt",
+    dscr = "text in math",
+    snippetType = "autosnippet",
+    condition = cond.in_markdown_math(),
+  }, {
+    t({ "\\text{ " }),
+    i(1),
+    t({ " }" }),
   }),
 
   -- Regex expansions

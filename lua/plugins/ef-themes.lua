@@ -1,6 +1,7 @@
 return {
   "oonamo/ef-themes.nvim",
   -- https://github.com/oonamo/ef-themes.nvim
+  priority = 1000, -- Load before other plugins
   config = function()
     require("ef-themes").setup({
       light = "ef-cyprus", -- Ef-theme to select for light backgrounds
@@ -55,9 +56,8 @@ return {
         compile_path = vim.fn.stdpath("cache") .. "/ef-themes", -- Directory in which to place compiled themes
       },
     })
-
-    vim.cmd.colorscheme("ef-theme") -- To use the default colorscheme defined above
-    -- Or choose a specific theme
-    -- vim.cmd.colorscheme("ef-dream")
+    
+    -- Apply colorscheme after setup
+    vim.cmd.colorscheme("ef-cyprus")
   end,
 }

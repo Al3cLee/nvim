@@ -2,6 +2,11 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      styles = {
+        scratch = {
+          border = false,
+        },
+      },
       picker = {
         hidden = true,
         sources = {

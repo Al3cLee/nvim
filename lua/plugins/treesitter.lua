@@ -5,10 +5,10 @@ return {
       ensure_installed = {
         "typst",
         "julia",
-        "markdown",
         "markdown_inline",
+        "latex",
+        "rust",
       },
-      -- Remove the indent disable for typst
     },
   },
 }

@@ -1,19 +1,21 @@
 local M = {}
 
-local function current_node(bufnr, row, col)
-  local ok, parser = pcall(vim.treesitter.get_parser, bufnr, "markdown")
-  if not ok or not parser then
-    return nil
+local function current_node()
+  return vim.treesitter.get_node({ ignore_injections = false })
+end
+
+function M.in_latex_text()
+  local node = current_node()
+
+  while node do
+    if node:type() == "text_mode" then
+      return true
+    else
+      node = node:parent()
+    end
   end
-  local tree = parser:parse()[1]
-  if not tree then
-    return nil
-  end
-  local root = tree:root()
-  -- Use the if idiom of Lua to return the narrowest node
-  -- if `root` exists and `nil` if it does not, which means
-  -- the whole function `current_node` outputs really the current_node.
-  return root and root:named_descendant_for_range(row, col, row, col) or nil
+
+  return false
 end
 
 function M.in_markdown_math()
@@ -34,25 +36,9 @@ function M.in_markdown_math()
   local lang_tree = parser:language_for_range({ row, col, row, col })
   if lang_tree then
     local lang = lang_tree:lang()
-    if lang and (lang:find("latex") or lang:find("equation") or lang:find("formula")) then
+    if M.in_latex_text() == false and lang:find("latex") then
       return true
     end
-  end
-  -- If no injected language found, check the fenced_code_block info_string
-  local node = current_node(bufnr, row, col)
-  while node do
-    local t = node:type()
-    if t == "fenced_code_block" then
-      for child in node:iter_children() do
-        if child:type() == "info_string" then
-          local lang = vim.treesitter.get_node_text(child, bufnr)
-          if lang and (lang:find("equation") or lang:find("formula")) then
-            return true
-          end
-        end
-      end
-    end
-    node = node:parent()
   end
   return false
 end

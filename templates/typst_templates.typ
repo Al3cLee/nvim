@@ -5,6 +5,8 @@
 #let df(x) = dd(x) + sym.space.thin
 #let uid = [\u{1d7d9}] // use Unicode for the id operator 𝟙
 
+#let text_size_doc = 10pt
+
 #let result = thmbox.with(padding: (top: 0em, bottom: 0em))(
         "theorem",
               "Result",
@@ -162,7 +164,7 @@
     
     // Mimic LaTeX look.
     // #set text(font: "New Computer Modern")
-    #set text(size:10pt)
+    #set text(size:text_size_doc)
     #set par(
             leading: 0.5em, 
             spacing: 1.2em, 
@@ -211,7 +213,7 @@
     #datetime.today().display("[month repr:short] [day padding:none], [year]")
     ]
     #block(height: 0.5em)
-    #set text(size:10pt)
+    #set text(size:text_size_doc)
     #main-doc
 ]
 
