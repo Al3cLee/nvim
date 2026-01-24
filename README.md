@@ -31,7 +31,13 @@ implements a Typst template file that allows
 - stand-alone compiling of child files, and
 - correct bibliography for both child files and the main file.
 
-Among these, the main difficulty was to avoid
+To initiate a multi-file `typst` project,
+use the vim command `:TypstDoc` for document
+and `:TypstTouying` for `touying` slides.
+The project will be initiated in
+`./typst_doc` and `./typst_touying`, respectively.
+
+The main difficulty was to avoid
 multiple-bibliography conflict while still suppressing
 missing-citation warnings in child files.
 This was achieved under the guidance provided

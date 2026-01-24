@@ -27,6 +27,14 @@ vim.api.nvim_create_user_command("TypstTemplate", function()
   vim.cmd("0r ~/.config/nvim/templates/Typst_templates.typ")
 end, {})
 
+vim.api.nvim_create_user_command("TypstDoc", function()
+  vim.cmd("!cp -R ~/.config/nvim/templates/typst_doc .")
+end, {})
+
+vim.api.nvim_create_user_command("TypstTouying", function()
+  vim.cmd("!cp -R ~/.config/nvim/templates/typst_touying .")
+end, {})
+
 vim.api.nvim_create_user_command("YankAll", function()
   vim.cmd("%y")
 end, {})
