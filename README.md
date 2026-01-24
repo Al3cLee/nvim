@@ -31,11 +31,11 @@ implements a Typst template file that allows
 - stand-alone compiling of child files, and
 - correct bibliography for both child files and the main file.
 
-To initiate a multi-file `typst` project,
-use the vim command `:TypstDoc` for document
-and `:TypstTouying` for `touying` slides.
-The project will be initiated in
-`./typst_doc` and `./typst_touying`, respectively.
+> [!TIP] To initiate a multi-file `typst` project,
+> use the vim command `:TypstDoc` for document
+> and `:TypstTouying` for `touying` slides.
+> The project will be initiated in
+> `./typst_doc` and `./typst_touying`, respectively.
 
 The main difficulty was to avoid
 multiple-bibliography conflict while still suppressing
