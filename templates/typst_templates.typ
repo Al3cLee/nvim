@@ -202,7 +202,7 @@
 ]
 
 #let template-doc-main(main-doc) = [
-    #set page(paper: "a4", numbering: "1 of 1")
+    #set page(paper: "a4", numbering: "1 of 1", margin: (x:1in))
     // Set document title and its appearance
     #set document(title: [Title], date: auto)
     #show title: it => [#align(center,it)]
