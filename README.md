@@ -8,9 +8,11 @@ terminal emulator.
 
 ## Requirements
 
-This setup should be mostly re-producible,
-because I have a very limited amount of plugins, and
-most heavy-lifting is done by LazyVim.
+- C language and `make`
+- The requirements of NeoVim
+- The requirements of LazyVim
+- `npm`
+- Any language you want to use
 
 ## Julia Language Server
 
