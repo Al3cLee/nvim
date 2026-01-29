@@ -35,6 +35,6 @@ return {
     vim.g.mkdp_port = ""
     vim.g.mkdp_page_title = "「${name}」"
     vim.g.mkdp_filetypes = { "markdown" }
-    vim.g.mkdp_theme = "dark"
+    vim.g.mkdp_theme = "light"
   end,
 }
