@@ -57,9 +57,15 @@ return {
   s(
     { wordTrig = false, trig = "input", dscr = "input", snippetType = "autosnippet", condition = cond.in_typst_math },
     {
-      t({ "( bullet )" }),
+      t({ "\\( bullet \\)" }),
     }
   ),
+
+  s({ wordTrig = true, trig = "of", dscr = "of", snippetType = "autosnippet", condition = cond.in_typst_math }, {
+    t({ "\\(" }),
+    i(1),
+    t({ "\\)" }),
+  }),
 
   s({ wordTrig = true, trig = "lm", dscr = "inline math", snippetType = "autosnippet" }, {
     t({ "$" }),

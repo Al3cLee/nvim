@@ -262,6 +262,21 @@ local snippets = {
   ),
 
   s(
+    {
+      trig = "(%a+)(bb)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+      condition = cond.in_latex_math,
+    },
+    fmta("\\mathbb{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    })
+  ),
+
+  s(
     { trig = "env", snippetType = "autosnippet" },
     fmta(
       [[

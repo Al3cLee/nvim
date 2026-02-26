@@ -1,3 +1,6 @@
+-- See Lua book for guide on Lua patterns
+-- https://www.lua.org/pil/20.2.html
+-- https://www.lua.org/pil/20.3.html
 local cond = require("markdown_math") -- adjust require path for markdown math detection
 local ls = require("luasnip")
 local s, t, i = ls.snippet, ls.text_node, ls.insert_node
@@ -13,7 +16,7 @@ local greek_letters = {
   "delta",
   "epsilon",
   "zeta",
-  "eta",
+  -- "eta",
   "theta",
   "iota",
   "kappa",
@@ -29,7 +32,6 @@ local greek_letters = {
   "upsilon",
   "phi",
   "chi",
-  "psi",
   "omega",
   -- Uppercase variants
   "Alpha",
@@ -63,21 +65,91 @@ local greek_letters = {
   "varrho",
   "varsigma",
   "varphi",
+  -- Other auto symbols
+  "ln",
+  "exp",
+  "lim",
+  "sum",
+  "prod",
 }
 
 local greek_snippets = {}
 for _, letter in ipairs(greek_letters) do
   table.insert(
     greek_snippets,
-    s({ trig = letter, wordTrig = false, condition = cond.in_markdown_math() }, {
+    s({
+      trig = letter,
+      priority = 1000,
+      -- this is the default priority,
+      -- just to make sure all Greek letters have
+      -- higher priority than "eta",
+      -- because there are "theta" and "beta".
+      wordTrig = false,
+      snippetType = "autosnippet",
+      condition = cond.in_markdown_math(),
+    }, {
       t("\\" .. letter),
     })
   )
 end
 local snippets = {
 
+  s({
+    trig = "eta",
+    wordTrig = true,
+    snippetType = "autosnippet",
+    condition = cond.in_markdown_math(),
+    priority = 100,
+  }, {
+    t("\\eta"),
+  }),
+
+  s({
+    trig = "psi",
+    wordTrig = true,
+    snippetType = "autosnippet",
+    condition = cond.in_markdown_math(),
+    priority = 100,
+  }, {
+    t("\\psi"),
+  }),
   -- basic symbols
 
+  s({
+    wordTrig = false,
+    trig = "ykuo",
+    dscr = "round brackets",
+    snippetType = "autosnippet",
+    condition = cond.in_markdown_math,
+  }, {
+    t({ "\\left(" }),
+    i(1),
+    t({ "\\right)" }),
+  }),
+
+  s({
+    wordTrig = false,
+    trig = "hkuo",
+    dscr = "curly brackets",
+    snippetType = "autosnippet",
+    condition = cond.in_markdown_math,
+  }, {
+    t({ "\\left\\{" }),
+    i(1),
+    t({ "\\right\\}" }),
+  }),
+
+  s({
+    wordTrig = false,
+    trig = "fkuo",
+    dscr = "square brackets",
+    snippetType = "autosnippet",
+    condition = cond.in_markdown_math,
+  }, {
+    t({ "\\left[" }),
+    i(1),
+    t({ "\\right]" }),
+  }),
   s({
     wordTrig = false,
     trig = "hr",
@@ -142,11 +214,17 @@ local snippets = {
     t({ "$" }),
   }),
 
-  s({ wordTrig = true, trig = "dm", dscr = "display math", snippetType = "autosnippet" }, {
-    t({ "$$" }),
-    i(1),
-    t({ "$$" }),
-  }),
+  s(
+    { wordTrig = true, trig = "dm", dscr = "display math", snippetType = "autosnippet" },
+    fmta(
+      [[
+      $$
+      <>
+      $$
+      ]],
+      { i(1) }
+    )
+  ),
 
   s({ wordTrig = false, trig = "ev", dscr = "expval", condition = cond.in_markdown_math }, {
     t({ "\\langle " }),
@@ -200,9 +278,9 @@ local snippets = {
     snippetType = "autosnippet",
     condition = cond.in_markdown_math(),
   }, {
-    t({ "\\text{ " }),
+    t({ "\\text{" }),
     i(1),
-    t({ " }" }),
+    t({ "}" }),
   }),
 
   -- Regex expansions
@@ -227,7 +305,7 @@ local snippets = {
 
   s(
     {
-      trig = "(%a+)(ket)",
+      trig = "(\\-%a+)(ket)",
       regTrig = true,
       wordTrig = false,
       snippetType = "autosnippet",
@@ -242,7 +320,28 @@ local snippets = {
 
   s(
     {
-      trig = "(%a+)(bra)",
+      trig = "(%s-)(ket)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+      condition = cond.in_markdown_math,
+    },
+    fmta(
+      [[
+      <>| <> \rangle
+      ]],
+      {
+        f(function(_, snip)
+          return snip.captures[1]
+        end),
+        i(1),
+      }
+    )
+  ),
+
+  s(
+    {
+      trig = "(\\-%a+)(bra)",
       regTrig = true,
       wordTrig = false,
       snippetType = "autosnippet",
@@ -254,6 +353,18 @@ local snippets = {
       end),
     })
   ),
+
+  s({
+    trig = "(%s+)(bra)",
+    regTrig = true,
+    wordTrig = false,
+    snippetType = "autosnippet",
+    condition = cond.in_markdown_math,
+  }, {
+    t({ " \\langle" }),
+    i(1),
+    t({ "|" }),
+  }),
 
   s(
     {
@@ -301,6 +412,21 @@ local snippets = {
   ),
 
   s(
+    {
+      trig = "(%a+)(bb)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+      condition = cond.in_markdown_math,
+    },
+    fmta("\\mathbb{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    })
+  ),
+
+  s(
     { trig = "env" },
     fmta(
       [[
@@ -312,6 +438,19 @@ local snippets = {
         i(1),
         i(2),
         rep(1), -- this node repeats insert node i(1)
+      }
+    )
+  ),
+
+  s(
+    { trig = "frac", snippetType = "autosnippet" },
+    fmta(
+      [[
+      \frac{<>}{<>}
+    ]],
+      {
+        i(1),
+        i(2),
       }
     )
   ),
