@@ -84,9 +84,9 @@ for _, letter in ipairs(greek_letters) do
       -- just to make sure all Greek letters have
       -- higher priority than "eta",
       -- because there are "theta" and "beta".
-      wordTrig = false,
+      wordTrig = true,
       snippetType = "autosnippet",
-      condition = cond.in_markdown_math(),
+      condition = cond.in_markdown_math,
     }, {
       t("\\" .. letter),
     })
@@ -98,7 +98,7 @@ local snippets = {
     trig = "eta",
     wordTrig = true,
     snippetType = "autosnippet",
-    condition = cond.in_markdown_math(),
+    condition = cond.in_markdown_math,
     priority = 100,
   }, {
     t("\\eta"),
@@ -108,7 +108,7 @@ local snippets = {
     trig = "psi",
     wordTrig = true,
     snippetType = "autosnippet",
-    condition = cond.in_markdown_math(),
+    condition = cond.in_markdown_math,
     priority = 100,
   }, {
     t("\\psi"),
@@ -272,11 +272,11 @@ local snippets = {
   }),
 
   s({
-    wordTrig = true,
+    wordTrig = false,
     trig = "txt",
     dscr = "text in math",
     snippetType = "autosnippet",
-    condition = cond.in_markdown_math(),
+    condition = cond.in_markdown_math,
   }, {
     t({ "\\text{" }),
     i(1),

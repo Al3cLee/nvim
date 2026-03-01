@@ -18,6 +18,20 @@ function M.in_latex_text()
   return false
 end
 
+function M.in_math()
+  local node = current_node()
+
+  while node do
+    if node:type() == "inline_formula" or node:type() == "displayed_equation" then
+      return true
+    else
+      node = node:parent()
+    end
+  end
+
+  return false
+end
+
 function M.in_markdown_math()
   -- Make sure we're operating on a `markdown` file.
   local bufnr = vim.api.nvim_get_current_buf()
