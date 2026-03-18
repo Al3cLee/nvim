@@ -5,7 +5,7 @@
 #let df(x) = dd(x) + sym.space.thin
 #let uid = [\u{1d7d9}] // use Unicode for the id operator 𝟙
 
-#let text_size_doc = 10pt
+#let text_size_doc = 11pt
 
 #let result = thmbox.with(padding: (top: 0em, bottom: 0em))(
         "theorem",
@@ -166,8 +166,8 @@
     // #set text(font: "New Computer Modern")
     #set text(size:text_size_doc)
     #set par(
-            leading: 0.5em, 
-            spacing: 1.2em, 
+            leading: 0.65em, // Line spacing
+            spacing: 1.5em, // Paragraph spacing
             first-line-indent: 2em, 
             justify: true)
     #show heading: set block(above: 1em, below: 1em)
@@ -202,7 +202,7 @@
 ]
 
 #let template-doc-main(main-doc) = [
-    #set page(paper: "a4", numbering: "1 of 1", margin: (x:1in))
+    #set page(paper: "a4", numbering: "1 of 1", margin: (x:3.5cm))
     // Set document title and its appearance
     #set document(title: [Title], date: auto)
     #show title: it => [#align(center,it)]

@@ -3,8 +3,7 @@
 #show: bib-child
 
 = Section Title
----
-// this means new slide in touying!
+--- // this means new slide in touying!
 // I use the metropolis theme,
 // which only creates new slides
 // for 2nd-level headers.

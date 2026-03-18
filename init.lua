@@ -4,12 +4,10 @@ require("config.lazy")
 -- Set up `julials` manually, since the Julia language server is not a binary and
 -- cannot be managed very well by mason.nvim.
 -- See https://github.com/julia-vscode/LanguageServer.jl/wiki/Vim-and-Neovim#vimlsp---new-api-in-neovim-011
--- vim.lsp.enable("julials")
 vim.lsp.config("jetls", {
   cmd = {
     "jetls",
-    "--threads=auto",
-    "--",
+    "serve",
   },
   filetypes = { "julia" },
   root_markers = { "Project.toml" },
