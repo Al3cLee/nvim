@@ -6,6 +6,7 @@ return {
         "typst",
         "julia",
         "markdown_inline",
+        "markdown",
         "latex",
         "rust",
       },

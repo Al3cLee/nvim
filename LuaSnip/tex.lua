@@ -1,3 +1,4 @@
+-- For how to write Lua patterns see https://www.lua.org/pil/20.2.html
 local cond = require("latex_math") -- adjust require path for LaTeX math detection
 local ls = require("luasnip")
 local s, t, i = ls.snippet, ls.text_node, ls.insert_node
@@ -69,8 +70,8 @@ local greek_snippets = {}
 for _, letter in ipairs(greek_letters) do
   table.insert(
     greek_snippets,
-    s(letter, {
-      t("\\" .. letter),
+    s({ trig = letter, snippetType = "autosnippet", wordTrig = true, condition = cond.in_latex_math }, {
+      t({ "\\" .. letter }),
     })
   )
 end
@@ -128,6 +129,18 @@ local snippets = {
     t({ " \\[" }),
     i(1),
     t({ "\\]" }),
+  }),
+
+  s({
+    wordTrig = true,
+    trig = "txt",
+    dscr = "text in math",
+    snippetType = "autosnippet",
+    condition = cond.in_latex_math,
+  }, {
+    t({ "\\text{" }),
+    i(1),
+    t({ "}" }),
   }),
 
   s({ wordTrig = false, trig = "ev", dscr = "expval", snippetType = "autosnippet", condition = cond.in_latex_math }, {
@@ -188,7 +201,7 @@ local snippets = {
 
   s(
     {
-      trig = "(%a+)(ket)",
+      trig = "([%a\\]+)(ket)",
       regTrig = true,
       wordTrig = false,
       snippetType = "autosnippet",
@@ -203,7 +216,22 @@ local snippets = {
 
   s(
     {
-      trig = "(%a+)(bra)",
+      trig = "(%a+)(cal)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+      condition = cond.in_latex_math,
+    },
+    fmta("\\mathcal{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    })
+  ),
+
+  s(
+    {
+      trig = "([%a\\]+)(bra)",
       regTrig = true,
       wordTrig = false,
       snippetType = "autosnippet",
@@ -218,7 +246,7 @@ local snippets = {
 
   s(
     {
-      trig = "(%a+)(va)",
+      trig = "([%a\\]+)(va)",
       regTrig = true,
       wordTrig = false,
       snippetType = "autosnippet",
@@ -233,7 +261,7 @@ local snippets = {
 
   s(
     {
-      trig = "(%a+)(td)",
+      trig = "([%a\\]+)(td)",
       regTrig = true,
       wordTrig = false,
       snippetType = "autosnippet",
@@ -248,7 +276,7 @@ local snippets = {
 
   s(
     {
-      trig = "(%a+)(ht)",
+      trig = "([%a\\]+)(ht)",
       regTrig = true,
       wordTrig = false,
       snippetType = "autosnippet",

@@ -7,12 +7,22 @@
 
 #let text_size_doc = 11pt
 
+#let font_config = (
+    (name: "Libertinus Serif", covers: "latin-in-cjk"),
+    "Source Han Serif SC"
+    )
+
+#let font_config_touying = (
+    (name: "Lato", covers: "latin-in-cjk"),
+    "Source Han Serif SC"
+    )
+
 #let result = thmbox.with(padding: (top: 0em, bottom: 0em))(
         "theorem",
               "Result",
               base_level:1,
               separator:[*.* ],
-              fill: rgb("#ecece8"),
+              fill: luma(240),     // Light gray background
               radius:0pt,
               breakable:true,
               )
@@ -21,8 +31,8 @@
               "Theorem",
               base_level:1,
               separator:[*.* ],
-              fill: rgb("#ecece8"),
               radius:0pt,
+              fill: luma(240),     // Light gray background
               breakable:true,
               )
 #let notation = thmplain.with(inset: (left:0pt,right:0pt))(
@@ -114,6 +124,7 @@
     // config-common(handout: true)
     // uncomment the above line to remove all animation sub-slides
     )
+    #show link: underline
     #show: thmrules
     #set heading(numbering: "1.1.")
     #set footnote(numbering: "*")
@@ -125,12 +136,12 @@
       radius: 0pt,               // Rounded corners (optional)
     )
     #set math.equation(numbering: "(1)")
-    #set text(size: 18pt, font: "Lato")
+    #set text(size: 18pt, font: font_config_touying)
     #set par(justify: true)
     #show heading.where(level:1): set text(weight: "regular")
     // Color for links, disable for printing in black&white.
-    #show link: set text(fill: rgb("#cc6d00"))
-    #show ref: set text(fill: rgb("#cc6d00"))
+    // #show link: set text(fill: rgb("#cc6d00"))
+    // #show ref: set text(fill: rgb("#cc6d00"))
     
     // #title-slide()
     
@@ -142,6 +153,7 @@
 // Document template for main file.
 
 #let template-doc(doc)= [
+    #show link: underline
     #show: thmrules
     #show heading.where(level: 1): it => {
       counter(math.equation).update(0)
@@ -164,17 +176,17 @@
     
     // Mimic LaTeX look.
     // #set text(font: "New Computer Modern")
-    #set text(size:text_size_doc)
+    #set text(size:text_size_doc, font: font_config)
     #set par(
             leading: 0.65em, // Line spacing
-            spacing: 1.5em, // Paragraph spacing
+            spacing: 1em, // Paragraph spacing
             first-line-indent: 2em, 
             justify: true)
     #show heading: set block(above: 1em, below: 1em)
     
     // Color for links, disable for printing in black&white.
-    #show link: set text(fill: rgb("#cc6d00"))
-    #show ref: set text(fill: rgb("#cc6d00"))
+    // #show link: set text(fill: rgb("#cc6d00"))
+    // #show ref: set text(fill: rgb("#cc6d00"))
     
     // Gray box and font setting for code blocks.
     #show raw: set text(font: "JetBrains Mono")
