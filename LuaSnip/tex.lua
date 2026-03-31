@@ -64,6 +64,15 @@ local greek_letters = {
   "varrho",
   "varsigma",
   "varphi",
+  -- Operators
+  "exp",
+  "sum",
+  "int",
+  "in",
+  "subset",
+  "subseteq",
+  "otimes",
+  "pm",
 }
 
 local greek_snippets = {}
@@ -179,6 +188,41 @@ local snippets = {
     }
   ),
 
+  s({
+    wordTrig = false,
+    trig = "ykuo",
+    dscr = "round brackets",
+    snippetType = "autosnippet",
+    condition = cond.in_markdown_math,
+  }, {
+    t({ "\\left(" }),
+    i(1),
+    t({ "\\right)" }),
+  }),
+
+  s({
+    wordTrig = false,
+    trig = "hkuo",
+    dscr = "curly brackets",
+    snippetType = "autosnippet",
+    condition = cond.in_markdown_math,
+  }, {
+    t({ "\\left\\{" }),
+    i(1),
+    t({ "\\right\\}" }),
+  }),
+
+  s({
+    wordTrig = false,
+    trig = "fkuo",
+    dscr = "square brackets",
+    snippetType = "autosnippet",
+    condition = cond.in_markdown_math,
+  }, {
+    t({ "\\left[" }),
+    i(1),
+    t({ "\\right]" }),
+  }),
   -- Regex expansions
 
   s(
