@@ -29,7 +29,7 @@ in the Neovim setup of `JETLS`.
 
 ## Typst templates
 
-> [!INFO]
+> [!NOTE]
 > This is still work-in-progress, comments are welcome!
 
 The file
