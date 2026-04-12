@@ -128,13 +128,13 @@ local snippets = {
     t({ "^{\\dagger}" }),
   }),
 
-  s({ wordTrig = false, regTrig = true, trig = "([^%a])lm", dscr = "inline math", snippetType = "autosnippet" }, {
-    t({ " $" }),
+  s({ wordTrig = true, regTrig = true, trig = "lm", dscr = "inline math", snippetType = "autosnippet" }, {
+    t({ "$" }),
     i(1),
     t({ "$" }),
   }),
 
-  s({ wordTrig = false, regTrig = true, trig = "([^%a])dm", dscr = "display math", snippetType = "autosnippet" }, {
+  s({ wordTrig = true, regTrig = true, trig = "dm", dscr = "display math", snippetType = "autosnippet" }, {
     t({ " \\[" }),
     i(1),
     t({ "\\]" }),
@@ -193,7 +193,7 @@ local snippets = {
     trig = "ykuo",
     dscr = "round brackets",
     snippetType = "autosnippet",
-    condition = cond.in_markdown_math,
+    condition = cond.in_latex_math,
   }, {
     t({ "\\left(" }),
     i(1),
@@ -205,7 +205,7 @@ local snippets = {
     trig = "hkuo",
     dscr = "curly brackets",
     snippetType = "autosnippet",
-    condition = cond.in_markdown_math,
+    condition = cond.in_latex_math,
   }, {
     t({ "\\left\\{" }),
     i(1),
@@ -217,7 +217,7 @@ local snippets = {
     trig = "fkuo",
     dscr = "square brackets",
     snippetType = "autosnippet",
-    condition = cond.in_markdown_math,
+    condition = cond.in_latex_math,
   }, {
     t({ "\\left[" }),
     i(1),
@@ -250,11 +250,26 @@ local snippets = {
       wordTrig = false,
       snippetType = "autosnippet",
       condition = cond.in_latex_math,
+      priority = 100,
     },
     fmta("\\ket{<>}", {
       f(function(_, snip)
         return snip.captures[1]
       end),
+    })
+  ),
+
+  s(
+    {
+      trig = "sket",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+      condition = cond.in_latex_math,
+      priority = 1000,
+    },
+    fmta("\\ket{<>}", {
+      i(1),
     })
   ),
 

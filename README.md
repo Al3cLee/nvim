@@ -14,6 +14,10 @@ terminal emulator.
 - `npm`
 - Any language you want to use
 
+## Wrapping
+
+There is an [`autocmd` set up by lazyvim](https://www.lazyvim.org/configuration/general#auto-commands) (search for `wrap_spell` in this webpage to find it under the tab `Default Auto Commands`) which wraps lines in text files; I have line wrap disabled by default, and wrapping can also be toggled via keyboard shortcut `<space>uw`.
+
 ## Julia Language Server
 
 The Julia language server is provided by `JETLS.jl`, see
@@ -24,6 +28,9 @@ the `root_markder` field needs to be specified
 in the Neovim setup of `JETLS`.
 
 ## Typst templates
+
+> [!INFO]
+> This is still work-in-progress, comments are welcome!
 
 The file
 [templates/typst_templates.typ](https://github.com/Al3cLee/nvim/blob/main/templates/typst_templates.typ)

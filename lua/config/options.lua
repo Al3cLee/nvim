@@ -3,5 +3,5 @@
 -- Add any additional options here
 local opt = vim.opt
 opt.linebreak = true
-opt.wrap = true
+opt.wrap = false
 vim.g.snacks_animate = false

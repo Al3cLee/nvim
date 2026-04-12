@@ -55,6 +55,13 @@ return {
   }),
 
   s(
+    { wordTrig = true, trig = "enter", dscr = "newline", snippetType = "autosnippet", condition = cond.in_typst_math },
+    {
+      t({ "\\" }),
+    }
+  ),
+
+  s(
     { wordTrig = false, trig = "input", dscr = "input", snippetType = "autosnippet", condition = cond.in_typst_math },
     {
       t({ "\\( bullet \\)" }),
@@ -135,7 +142,6 @@ return {
     wordTrig = false,
     trig = "at",
     dscr = "evaluated at",
-    snippetType = "autosnippet",
     condition = cond.in_typst_math,
   }, {
     t({ "evaluated(" }),
@@ -176,6 +182,19 @@ return {
       end),
     })
   ),
+
+  s({
+    trig = "ip",
+    regTrig = true,
+    wordTrig = false,
+    dscr = "inner product",
+    snippetType = "autosnippet",
+    condition = cond.in_typst_math,
+  }, {
+    t({ "braket(" }),
+    i(1),
+    t({ ")" }),
+  }),
 
   s(
     {
