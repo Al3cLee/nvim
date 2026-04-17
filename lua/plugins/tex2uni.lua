@@ -2,7 +2,7 @@ return {
   {
     "Zeta611/tex2uni.nvim",
     opts = {
-      ft = { "*.{tex,jl,v,md}" }, -- enable for specific filetypes
+      ft = { "*.{tex,jl,v,md,csv,typst}" }, -- enable for specific filetypes
       abbreviations = {
         extra = {
           ["pure"] = "⌜$CURSOR⌝", -- add custom abbreviations

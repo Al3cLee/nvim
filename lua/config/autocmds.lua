@@ -25,15 +25,18 @@ end, {})
 
 vim.api.nvim_create_user_command("TypstTemplate", function()
   vim.cmd("!cp ~/.config/nvim/templates/typst_templates.typ ./preamble.typ")
+  vim.cmd("!cp ~/.config/nvim/templates/preamble_standalone.typ ./preamble_standalone.typ")
 end, {})
 
 vim.api.nvim_create_user_command("TypstDoc", function()
   vim.cmd("!cp -R ~/.config/nvim/templates/typst_doc .")
+  vim.cmd("!cp ~/.config/nvim/templates/preamble_standalone.typ ./preamble_standalone.typ")
   vim.cmd("!cp ~/.config/nvim/templates/typst_templates.typ ./typst_doc/preamble.typ")
 end, {})
 
 vim.api.nvim_create_user_command("TypstTouying", function()
   vim.cmd("!cp -R ~/.config/nvim/templates/typst_touying .")
+  vim.cmd("!cp ~/.config/nvim/templates/preamble_standalone.typ ./preamble_standalone.typ")
   vim.cmd("!cp ~/.config/nvim/templates/typst_templates.typ ./typst_touying/preamble.typ")
 end, {})
 

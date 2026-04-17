@@ -18,39 +18,44 @@
   "Source Han Serif SC",
 )
 
+
 #let result = thmbox.with(padding: (top: 0em, bottom: 0em))(
   "theorem",
   "Result",
-  base_level: 1,
   separator: [*.*#h(0.5em)],
   fill: luma(240), // Light gray background
+  base: none,
   radius: 0pt,
   breakable: true,
 )
+
 #let theorem = thmbox.with(padding: (top: 0em, bottom: 0em))(
   "theorem",
   "Theorem",
-  base_level: 1,
   separator: [*.*#h(0.5em)],
   radius: 0pt,
   fill: luma(240), // Light gray background
+  base: none,
   breakable: true,
 )
+
 #let example = thmbox.with(padding: (top: 0em, bottom: 0em))(
   "theorem",
   "Example",
-  base_level: 1,
   separator: [*.*#h(0.5em)],
   radius: 0pt,
   breakable: true,
+  // stroke: (top: 1pt + luma(200), bottom: 1pt + luma(200)),
   inset: (top: 0pt, bottom: 0pt, left: 2em, right: 2em),
+  base: none,
 )
+
 #let sideline(name) = thmbox.with(padding: (top: 0em, bottom: 0em))(
   "theorem",
   upper(str.first(name)) + str.slice(name, 1),
-  base_level: 1,
   inset: (top: 0.5em, bottom: 0.5em, left: 1em, right: 0pt),
   separator: [.#h(0.5em)],
+  base: none,
   radius: 0pt,
   stroke: (left: 2pt + luma(200)),
   breakable: true,
@@ -59,9 +64,25 @@
 
 #let definition = sideline("definition")
 #let remark = sideline("remark")
-#let notation = sideline("notation")
 #let motivation = sideline("motivation")
 #let lemma = sideline("lemma")
+#let notation = sideline("notation")
+
+#let glossary-state = state("glossary-entries", ())
+
+#let gloss(term, desc) = context {
+  let page-num = counter(page).get().first()
+  glossary-state.update(arr => {
+    arr.push((key: term, value: desc) + (page: page-num))
+    arr
+  })
+}
+
+#let make-glossary() = context {
+  for item in glossary-state.final() [
+    - #item.key means: #item.value (see page #item.page)
+  ]
+}
 
 // Custom `graybox` environment.
 #let graybox(x) = block(
@@ -81,8 +102,6 @@
 ]
 
 #let load-bib(main: false, title: "Bibliography") = {
-  counter("bibs").step()
-
   context if main {
     [#bibliography("ref.bib", title: title) <main-bib>]
   } else if query(<main-bib>) == () {
@@ -155,10 +174,6 @@
 #let template-doc(doc) = [
   #show link: underline
   #show: thmrules
-  #show heading.where(level: 1): it => {
-    counter(math.equation).update(0)
-    it
-  }
 
   // Left align the body of listings while
   // their caption stay center aligned.
@@ -167,12 +182,9 @@
     v(1em, weak: true)
     it.caption
   }
-  // Number equations under 1st-level sections.
-  #set math.equation(numbering: (..nums) => {
-    let section = counter(heading).get().first()
-    numbering("(1.1)", section, ..nums)
-  })
+  #set math.equation(numbering: "(1)")
   #set heading(numbering: "1.1.1.1.1. ")
+  // Number equations under 1st-level sections.
 
   // Mimic LaTeX look.
   // #set text(font: "New Computer Modern")
