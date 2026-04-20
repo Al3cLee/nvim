@@ -15,9 +15,11 @@
 
 #let font_config_touying = (
   (name: "Lato", covers: "latin-in-cjk"),
+  "Lato",
   "Source Han Serif SC",
 )
 
+#let abstract(body) = block(inset: (x: 4em))[#par(justify: true)[*Abstract.* #body]]
 #let result = thmbox.with(padding: (top: 0em, bottom: 0em))(
   "theorem",
   "Result",
@@ -62,7 +64,23 @@
 #let notation = sideline("notation")
 #let motivation = sideline("motivation")
 #let lemma = sideline("lemma")
+#let corollary = sideline("corollary")
 
+#let glossary-state = state("glossary-entries", ())
+
+#let gloss(term, desc) = context {
+  let page-num = counter(page).get().first()
+  glossary-state.update(arr => {
+    arr.push((key: term, value: desc) + (page: page-num))
+    arr
+  })
+}
+
+#let make-glossary() = context {
+  for item in glossary-state.final() [
+    - #item.key means: #item.value (see page #item.page)
+  ]
+}
 // Custom `graybox` environment.
 #let graybox(x) = block(
   fill: rgb("#ecece8"), // Light grey background

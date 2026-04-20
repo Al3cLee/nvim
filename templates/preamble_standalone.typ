@@ -15,9 +15,11 @@
 
 #let font_config_touying = (
   (name: "Lato", covers: "latin-in-cjk"),
+  "Lato",
   "Source Han Serif SC",
 )
 
+#let abstract(body) = block(inset: (x: 4em))[#par(justify: true)[*Abstract.* #body]]
 
 #let result = thmbox.with(padding: (top: 0em, bottom: 0em))(
   "theorem",
@@ -67,6 +69,7 @@
 #let motivation = sideline("motivation")
 #let lemma = sideline("lemma")
 #let notation = sideline("notation")
+#let corollary = sideline("corollary")
 
 #let glossary-state = state("glossary-entries", ())
 
