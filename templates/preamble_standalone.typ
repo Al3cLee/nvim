@@ -2,9 +2,15 @@
 #import themes.metropolis: *
 #import "@preview/ctheorems:1.1.3": *
 #import "@preview/physica:0.9.7": *
-#let df(x) = dd(x) + sym.space.thin
 #let uid = [\u{1d7d9}] // use Unicode for the id operator 𝟙
-
+#let empty = [#text(font: "Euler Math", [\u{ea7b}])]
+#let Re = math.op("Re", limits: true)
+#let Im = math.op("Im", limits: true)
+// Redefine cal() to use Euler Math's calligraphic glyphs.
+// Only affects cal(...) expressions; all other math is unchanged.
+// The font can be downloaded at https://ctan.org/pkg/euler-math
+#let cal(body) = text(font: "Euler Math", math.cal(body))
+#let proof = thmproof.with(inset: 0pt, separator: [ .#h(0.5em)])("proof", "Proof")
 #let text_size_doc = 11pt
 
 #let font_config = (
@@ -28,7 +34,7 @@
   fill: luma(240), // Light gray background
   base: none,
   radius: 0pt,
-  breakable: true,
+  breakable: false,
 )
 
 #let theorem = thmbox.with(padding: (top: 0em, bottom: 0em))(
@@ -38,7 +44,7 @@
   radius: 0pt,
   fill: luma(240), // Light gray background
   base: none,
-  breakable: true,
+  breakable: false,
 )
 
 #let example = thmbox.with(padding: (top: 0em, bottom: 0em))(
@@ -60,7 +66,7 @@
   base: none,
   radius: 0pt,
   stroke: (left: 2pt + luma(200)),
-  breakable: true,
+  breakable: false,
   titlefmt: emph,
 )
 
@@ -118,10 +124,26 @@
     #load-bib(main: main, title: "")]
 ]
 
+#let template-scratch(doc) = [
+  #set page(
+    width: auto,
+    height: auto,
+    margin: 0pt,
+    fill: none,
+  )
+  #set text(size: 180pt)
+  #doc
+]
+
 // Touying template for main file.
 
 #let template-touying-main(doc) = [#doc] // this is trivial, just to align with template-doc structure
 #let template-touying(doc) = [
+  #set table(stroke: (_, y) => (
+    top: if y > 1 { 0pt } else if y == 0 { 1pt } else if y == 1 { 0.5pt },
+    bottom: 1pt,
+  ))
+  #show: thmrules
   #show: metropolis-theme.with(
     footer-progress: false,
     aspect-ratio: "16-9",
@@ -147,7 +169,6 @@
     // uncomment the above line to remove all animation sub-slides
   )
   #show link: underline
-  #show: thmrules
   #set heading(numbering: "1.1.")
   #set footnote(numbering: "*")
   #show raw: set text(font: "JetBrains Mono")
@@ -159,7 +180,7 @@
   )
   #set math.equation(numbering: "(1)")
   #set text(size: 18pt, font: font_config_touying)
-  #set par(justify: true)
+  #set par(justify: true, first-line-indent: 2em)
   #show heading.where(level: 1): set text(weight: "regular")
   // Color for links, disable for printing in black&white.
   // #show link: set text(fill: rgb("#cc6d00"))
@@ -186,7 +207,7 @@
     it.caption
   }
   #set math.equation(numbering: "(1)")
-  #set heading(numbering: "1.1.1.1.1. ")
+  // #set heading(numbering: "1.1.1.1.1. ")
   // Number equations under 1st-level sections.
 
   // Mimic LaTeX look.
@@ -217,15 +238,19 @@
     radius: 0pt, // Rounded corners (optional)
   )
 
+  #set table(stroke: (_, y) => (
+    top: if y > 1 { 0pt } else if y == 0 { 1pt } else if y == 1 { 0.5pt },
+    bottom: 1pt,
+  ))
   #doc
 
   // #load-bib(main: false)
 ]
 
-#let template-doc-main(main-doc) = [
+#let template-doc-main(main-doc, doc-title: "Title") = [
   #set page(paper: "a4", numbering: "1 of 1", margin: (x: 2cm))
   // Set document title and its appearance
-  #set document(title: [Title], date: auto)
+  #set document(title: [#doc-title], date: auto)
   #show title: it => [#align(center, it)]
   #title()
 

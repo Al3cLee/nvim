@@ -71,6 +71,8 @@ local greek_letters = {
   "lim",
   "sum",
   "prod",
+  "hbar",
+  "partial",
 }
 
 local greek_snippets = {}
@@ -117,7 +119,7 @@ local snippets = {
 
   s({
     wordTrig = false,
-    trig = "ykuo",
+    trig = "rb",
     dscr = "round brackets",
     snippetType = "autosnippet",
     condition = cond.in_markdown_math,
@@ -129,7 +131,7 @@ local snippets = {
 
   s({
     wordTrig = false,
-    trig = "hkuo",
+    trig = "cb",
     dscr = "curly brackets",
     snippetType = "autosnippet",
     condition = cond.in_markdown_math,
@@ -141,7 +143,7 @@ local snippets = {
 
   s({
     wordTrig = false,
-    trig = "fkuo",
+    trig = "sb",
     dscr = "square brackets",
     snippetType = "autosnippet",
     condition = cond.in_markdown_math,
@@ -232,11 +234,11 @@ local snippets = {
     t({ " \\rangle" }),
   }),
 
-  s({ wordTrig = false, trig = "jia", dscr = "+", snippetType = "autosnippet", condition = cond.in_markdown_math }, {
+  s({ wordTrig = false, trig = "plus", dscr = "+", snippetType = "autosnippet", condition = cond.in_markdown_math }, {
     t({ "+" }),
   }),
 
-  s({ wordTrig = false, trig = "jien", dscr = "-", snippetType = "autosnippet", condition = cond.in_markdown_math }, {
+  s({ wordTrig = false, trig = "minus", dscr = "-", snippetType = "autosnippet", condition = cond.in_markdown_math }, {
     t({ "-" }),
   }),
 
@@ -247,7 +249,7 @@ local snippets = {
     }
   ),
 
-  s({ wordTrig = false, trig = "dy", dscr = "=", snippetType = "autosnippet", condition = cond.in_markdown_math }, {
+  s({ wordTrig = false, trig = "eq", dscr = "=", snippetType = "autosnippet", condition = cond.in_markdown_math }, {
     t({ "=" }),
   }),
 
@@ -443,7 +445,7 @@ local snippets = {
   ),
 
   s(
-    { trig = "frac", snippetType = "autosnippet" },
+    { trig = "frac", snippetType = "autosnippet", condition = cond.in_markdown_math },
     fmta(
       [[
       \frac{<>}{<>}

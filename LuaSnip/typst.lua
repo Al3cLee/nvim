@@ -64,7 +64,7 @@ return {
   s(
     { wordTrig = false, trig = "input", dscr = "input", snippetType = "autosnippet", condition = cond.in_typst_math },
     {
-      t({ "\\( bullet \\)" }),
+      t({ "\\( dots.c \\)" }),
     }
   ),
 
@@ -80,11 +80,35 @@ return {
     t({ "$" }),
   }),
 
-  s({ wordTrig = true, trig = "dm", dscr = "display math", snippetType = "autosnippet" }, {
-    t({ "$ " }),
+  s({ wordTrig = true, trig = "rb", dscr = "round brackets", snippetType = "autosnippet" }, {
+    t({ "(" }),
     i(1),
-    t({ " $" }),
+    t({ ")" }),
   }),
+
+  s({ wordTrig = true, trig = "sb", dscr = "square brackets", snippetType = "autosnippet" }, {
+    t({ "[" }),
+    i(1),
+    t({ "]" }),
+  }),
+
+  s({ wordTrig = true, trig = "cb", dscr = "curly brackets", snippetType = "autosnippet" }, {
+    t({ "{" }),
+    i(1),
+    t({ "}" }),
+  }),
+
+  s(
+    { wordTrig = true, trig = "dm", dscr = "display math", snippetType = "autosnippet" },
+    fmta(
+      [[
+      $
+        <>
+      $
+      ]],
+      { i(1) }
+    )
+  ),
 
   s({ wordTrig = true, trig = "wrt", dscr = "with respect to", snippetType = "autosnippet" }, {
     t({ "with respect to" }),
@@ -102,11 +126,11 @@ return {
     )
   ),
 
-  s({ wordTrig = false, trig = "jia", dscr = "+", snippetType = "autosnippet", condition = cond.in_typst_math }, {
+  s({ wordTrig = false, trig = "plus", dscr = "+", snippetType = "autosnippet", condition = cond.in_typst_math }, {
     t({ "+" }),
   }),
 
-  s({ wordTrig = false, trig = "jien", dscr = "-", snippetType = "autosnippet", condition = cond.in_typst_math }, {
+  s({ wordTrig = false, trig = "minus", dscr = "-", snippetType = "autosnippet", condition = cond.in_typst_math }, {
     t({ "-" }),
   }),
 
@@ -114,14 +138,24 @@ return {
     t({ "times" }),
   }),
 
-  s({ wordTrig = false, trig = "dy", dscr = "=", snippetType = "autosnippet", condition = cond.in_typst_math }, {
-    t({ "=" }),
-  }),
+  s(
+    { wordTrig = false, trig = "comma", dscr = "comma", snippetType = "autosnippet", condition = cond.in_typst_math },
+    {
+      t({ "\\," }),
+    }
+  ),
 
   s(
     { wordTrig = false, trig = "ii", dscr = "upright i", snippetType = "autosnippet", condition = cond.in_typst_math },
     {
       t({ '"i"' }),
+    }
+  ),
+
+  s(
+    { wordTrig = false, trig = "const", dscr = "constant", snippetType = "autosnippet", condition = cond.in_typst_math },
+    {
+      t({ '"const"' }),
     }
   ),
 

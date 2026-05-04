@@ -36,7 +36,7 @@ end, {})
 
 vim.api.nvim_create_user_command("TypstTouying", function()
   vim.cmd("!cp -R ~/.config/nvim/templates/typst_touying .")
-  vim.cmd("!cp ~/.config/nvim/templates/preamble_standalone.typ ./typst_touying/preamble_standalone.typ")
+  vim.cmd("!cp ~/.config/nvim/templates/preamble_standalone.typ ./typst_touyingautocmdk/preamble_standalone.typ")
   vim.cmd("!cp ~/.config/nvim/templates/typst_templates.typ ./typst_touying/preamble.typ")
 end, {})
 
@@ -44,14 +44,14 @@ vim.api.nvim_create_user_command("YankAll", function()
   vim.cmd("%y")
 end, {})
 
-vim.api.nvim_create_user_command("MarkdownPreview", function()
-  vim.cmd("LivePreview close")
-  vim.cmd("LivePreview start")
-end, {})
+-- vim.api.nvim_create_user_command("MarkdownPreview", function()
+--   vim.cmd("LivePreview close")
+--   vim.cmd("LivePreview start")
+-- end, {})
 
-vim.api.nvim_create_user_command("MarkdownPreviewStop", function()
-  vim.cmd("LivePreview close")
-end, {})
+-- vim.api.nvim_create_user_command("MarkdownPreviewStop", function()
+--   vim.cmd("LivePreview close")
+-- end, {})
 
 vim.keymap.set("n", "<leader>op", function()
   -- Use NeoVim API to get the directory name of

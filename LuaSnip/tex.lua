@@ -158,11 +158,11 @@ local snippets = {
     t({ " \\rangle" }),
   }),
 
-  s({ wordTrig = false, trig = "jia", dscr = "+", snippetType = "autosnippet", condition = cond.in_latex_math }, {
+  s({ wordTrig = false, trig = "plus", dscr = "+", snippetType = "autosnippet", condition = cond.in_latex_math }, {
     t({ "+" }),
   }),
 
-  s({ wordTrig = false, trig = "jien", dscr = "-", snippetType = "autosnippet", condition = cond.in_latex_math }, {
+  s({ wordTrig = false, trig = "minus", dscr = "-", snippetType = "autosnippet", condition = cond.in_latex_math }, {
     t({ "-" }),
   }),
 
@@ -170,7 +170,7 @@ local snippets = {
     t({ "\\times" }),
   }),
 
-  s({ wordTrig = false, trig = "dy", dscr = "=", snippetType = "autosnippet", condition = cond.in_latex_math }, {
+  s({ wordTrig = false, trig = "eq", dscr = "=", snippetType = "autosnippet", condition = cond.in_latex_math }, {
     t({ "=" }),
   }),
 
@@ -190,7 +190,7 @@ local snippets = {
 
   s({
     wordTrig = false,
-    trig = "ykuo",
+    trig = "rb",
     dscr = "round brackets",
     snippetType = "autosnippet",
     condition = cond.in_latex_math,
@@ -202,7 +202,7 @@ local snippets = {
 
   s({
     wordTrig = false,
-    trig = "hkuo",
+    trig = "cb",
     dscr = "curly brackets",
     snippetType = "autosnippet",
     condition = cond.in_latex_math,
@@ -214,7 +214,7 @@ local snippets = {
 
   s({
     wordTrig = false,
-    trig = "fkuo",
+    trig = "sb",
     dscr = "square brackets",
     snippetType = "autosnippet",
     condition = cond.in_latex_math,

@@ -1,5 +1,6 @@
 return {
-  "brianhuster/live-preview.nvim",
+  "Al3cLee/live-preview.nvim",
+  branch = "yaml-widget",
   dependencies = {
     -- You can choose one of the following pickers
     -- 'nvim-telescope/telescope.nvim',
