@@ -163,15 +163,6 @@ For `touying` files, a minimal setup is
 #show: bib-child
 
 = Section Title
----
-// this means new slide in touying!
-// I use the metropolis theme,
-// which only creates new slides
-// for 2nd-level headers.
-// Therefore it is a must to
-// manually add "---" after 1st-level headers,
-// otherwise the text following this header
-// will be very big.
 ```
 
 ```typst
@@ -189,6 +180,18 @@ It is _strongly advised_ to keep all contents in child files
 in this multiple-file setup. For `touying` this structure
 does not allow contents in `main.typ`; for `doc` you can `#show: template-doc` in `main.typ`
 and write contents.
+
+For calligraphic letters (typeset with `math.cal`) I use the Euler Math font.
+This font is designed by Hermann Zapf, who also created Palatino and Optima.
+Previously this font was primarily a LaTeX package, but it now has a modern version
+and is actively maintained! See https://ctan.org/pkg/euler-math . To use it, simply write
+```typst
+#let cal(body) = text(font: "Euler Math", math.cal(body))
+```
+One can also define custom symbols via
+```typst
+#let empty = [#text(font: "Euler Math", [\u{ea7b}])]
+```
 
 ## LuaSnip
 
