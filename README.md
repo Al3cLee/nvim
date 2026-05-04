@@ -13,6 +13,7 @@ terminal emulator.
 - The requirements of LazyVim
 - `npm`
 - Any language you want to use
+- The [Euler Math](ctan.org/pkg/euler-math) and [Lato](https://www.latofonts.com) fonts discoverable by `typst`
 
 ## Wrapping
 
