@@ -1,7 +1,7 @@
-#import "@preview/touying:0.6.1": *
+#import "@preview/touying:0.7.3": *
 #import themes.metropolis: *
 #import "@preview/ctheorems:1.1.3": *
-#import "@preview/physica:0.9.7": *
+#import "@preview/physica:0.9.8": *
 #let uid = [\u{1d7d9}] // use Unicode for the id operator 𝟙
 #let empty = [#text(font: "Euler Math", [\u{ea7b}])]
 #let Re = math.op("Re", limits: true)
