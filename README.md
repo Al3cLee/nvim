@@ -46,6 +46,8 @@ implements a Typst template file that allows
 > and `:TypstTouying` for `touying` slides.
 > The project will be initiated in
 > `./typst_doc` and `./typst_touying`, respectively.
+> To populate the current directory with the template files,
+> use the command `:TypstTemplate`.
 
 The main difficulty was to avoid
 multiple-bibliography conflict while still suppressing
@@ -65,9 +67,10 @@ The mental model is that, in a project,
 - some `child.typ` files store contents, and
 - the `main.typ` file collects various `child` files together via `#include`.
 
-Specifically, the main file should **not** include any
-`show` rules; at least, its show rules should be orthogonal
-to those in child files.
+Specifically,
+
+- the main file's `show` rules should be minimal; at least, they should be orthogonal to those in child files, and
+- the semantic mark of an atomic note is a 1st level heading.
 
 I implemented the (very opinionated) approach where each child file can be
 compiled stand-alone without errors, and
@@ -102,6 +105,15 @@ Each file needs to import the preamble
 and specify a show rule.
 For bibliography integration, an additional show rule is needed.
 
+When a child file only contains one 1st-level heading,
+numbering equations and proclamation-like environments
+like `1.x` becomes unnecessary.
+The file `preamble_standalone` implements
+a template that numbers everything continuously
+without `base`-ing them on headings.
+This could be useful if you want to compile
+a child file only and distribute it.
+
 ```typst
 // preamble.typ
 // This should be exactly the same as
@@ -113,7 +125,7 @@ For bibliography integration, an additional show rule is needed.
 ```typst
 // main.typ
 #import "preamble.typ": *
-#show: template-doc-main
+#show: template-doc-main.with(doctitle: Title) // Set title here
 #show: bib-main-doc // Use this line if you have bibliography
 
 #include "child.typ"
@@ -122,6 +134,11 @@ For bibliography integration, an additional show rule is needed.
 ```typst
 // child.typ
 #import "preamble.typ": *
+// #import "preamble_standalone.typ": *
+// Use the above line if you want your child file
+// look like a standalone document;
+// remember to comment out the import of preamble.typ
+// in that case.
 #show: template-doc
 #show: bib-child
 
