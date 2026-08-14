@@ -1,6 +1,6 @@
 # nvim
 
-My NeoVim setup folder. I use
+Here is my NeoVim setup folder. I use
 [LazyVim](https://lazyvim.org)
 with the
 [WezTerm](https://wezterm.org)
@@ -12,9 +12,8 @@ terminal emulator.
 - The requirements of NeoVim
 - The requirements of LazyVim
 - `npm`
-- Any language you want to use
 
-Fonts: configuration for `typst` is set in `./templates/preamble_standalone.typ` and `./templates/typst_templates.typ` by the variables `font_config` and `font_config_touying`. Currently the dependencies include:
+Fonts: configuration for `typst` is set in `templates/preamble_standalone.typ` and `templates/typst_templates.typ` by the variables `font_config` and `font_config_touying`. Currently the dependencies include:
 
 - The [Euler Math](https://ctan.org/pkg/euler-math) and [Lato](https://www.latofonts.com) fonts
 - If you input any CJK content, the [Source Han Serif SC](https://github.com/adobe-fonts/source-han-serif) font is required
@@ -32,10 +31,20 @@ For configuration to work,
 the `root_markder` field needs to be specified
 in the Neovim setup of `JETLS`.
 
-## Typst templates
+## Typst templates: New Setup
 
-> [!NOTE]
-> This is still work-in-progress, comments are welcome!
+Since `typst` now supports multiple bibliographies,
+if you do not mind having many bibliographies in a single project,
+simply use the `bibliography` command wherever you see fit.
+Other aspects of my `typst` setup remain the same as
+the old one as detailed below.
+
+Custom-defined `show` rules for bibliographies from the old configuration are still useful if you want
+
+- a bibliography for a child file when compiled alone,
+- no bibliographies for child files when compiling the main file (there is one bibliography at the end which takes care of everything).
+
+## Typst templates: Old Setup
 
 The file
 [templates/typst_templates.typ](https://github.com/Al3cLee/nvim/blob/main/templates/typst_templates.typ)
@@ -191,7 +200,6 @@ For `touying` files, a minimal setup is
 // bib_slide.typ
 #import "preamble.typ": *
 #show: template-touying
-#show: bib-child // Actually, this line is not necessary
 
 #bib-slide()
 ```
