@@ -1,37 +1,14 @@
 local M = {}
 
-local function current_node(bufnr, row, col)
-  -- Try to get the parser for the current buffer.
-  local ok, parser = pcall(vim.treesitter.get_parser, bufnr, vim.bo[bufnr].filetype)
-  if not ok or not parser then
-    return nil
-  end
-  local tree = parser:parse()[1]
-  if not tree then
-    return nil
-  end
-  local root = tree:root()
-  -- `return A and B or C` means: B if A=true, C otherwise.
-  return root and root:named_descendant_for_range(row, col, row, col) or nil
-end
-
 function M.in_typst_math()
   -- Make sure we're operating on a `typst` file.
   local bufnr = vim.api.nvim_get_current_buf()
   if vim.bo[bufnr].filetype ~= "typst" then
     return false
   end
-  -- Get current_node, loop til its root and look for
+  -- Get the node at the cursor, loop til its root and look for
   -- any node type containing "math".
-  local pos = vim.api.nvim_win_get_cursor(0)
-  -- Upon :InspectTree we can see that
-  -- treesitter uses coordinates starting from 0.
-  -- But vim.api.nvim_win_get_cursor(0) gets
-  -- a cursor position which is (1,0)-indexed,
-  -- so we need to subtract 1 from the line number,
-  -- and the column number can be readily used.
-  local row, col = pos[1] - 1, pos[2]
-  local node = current_node(bufnr, row, col)
+  local node = vim.treesitter.get_node()
   while node do
     -- Visit each node and
     -- check whether "string" or "math" appears.

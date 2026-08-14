@@ -2,7 +2,7 @@
 #import themes.metropolis: *
 #import "@preview/ctheorems:1.1.3": *
 #import "@preview/physica:0.9.8": (
-  Im, Re, Res, Set, TT, bra, braket, dd, diag, dv, evaluated, expval, ket, pdv, rank, sgn, trace, va, vb, vu,
+  Im, Re, Res, Set, TT, bra, braket, dd, diag, dv, evaluated, expval, ket, pdv, rank, sgn, tensor, trace, va, vb, vu,
 )
 #let ketdouble(body) = [$lr(bar#body#h(0pt)chevron.r.double)$]
 #let bradouble(body) = [$lr(chevron.l.double#body#h(0pt)bar)$]
