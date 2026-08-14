@@ -50,7 +50,7 @@ function M.in_typst_math()
       node = node:parent()
     end
   end
-  -- Provide default value for the function.
+  -- Provide default value `false` for the function.
   return false -- This line must be outside the while loop.
 end
 

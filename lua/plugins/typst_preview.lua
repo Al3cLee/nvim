@@ -3,6 +3,7 @@ return {
   lazy = false, -- or ft = 'typst'
   version = "1.*",
   opts = {
+    follow_cursor = false,
     -- Point this plugin to the `tinymist` version installed via `Mason`
     -- to avoid version conflicts.
     dependencies_bin = { ["tinymist"] = "tinymist" },

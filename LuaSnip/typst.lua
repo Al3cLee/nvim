@@ -80,6 +80,12 @@ return {
     t({ "$" }),
   }),
 
+  s({ wordTrig = true, trig = "pcite", dscr = "prose cite", snippetType = "autosnippet" }, {
+    t({ "#cite(<" }),
+    i(1),
+    t({ '>,form:"prose")' }),
+  }),
+
   s({ wordTrig = true, trig = "rb", dscr = "round brackets", snippetType = "autosnippet" }, {
     t({ "(" }),
     i(1),
@@ -133,6 +139,13 @@ return {
   s({ wordTrig = false, trig = "minus", dscr = "-", snippetType = "autosnippet", condition = cond.in_typst_math }, {
     t({ "-" }),
   }),
+
+  s(
+    { wordTrig = false, trig = "pm", dscr = "plus.minus", snippetType = "autosnippet", condition = cond.in_typst_math },
+    {
+      t({ "plus.minus" }),
+    }
+  ),
 
   s({ wordTrig = false, trig = "xx", dscr = "cross", snippetType = "autosnippet", condition = cond.in_typst_math }, {
     t({ "times" }),

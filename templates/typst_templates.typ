@@ -1,11 +1,17 @@
-#import "@preview/touying:0.7.3": *
+#import "@preview/touying:0.7.4": *
 #import themes.metropolis: *
 #import "@preview/ctheorems:1.1.3": *
-#import "@preview/physica:0.9.8": *
+#import "@preview/physica:0.9.8": (
+  Im, Re, Res, Set, TT, bra, braket, dd, diag, dv, evaluated, expval, ket, pdv, rank, sgn, trace, va, vb, vu,
+)
+#let ketdouble(body) = [$lr(bar#body#h(0pt)chevron.r.double)$]
+#let bradouble(body) = [$lr(chevron.l.double#body#h(0pt)bar)$]
+#let grad = [$arrow(nabla)$]
+#let div = [$arrow(nabla) dot.c$]
+#let curl = [$arrow(nabla) times$]
+#let laplacian = [$nabla^(2)$]
 #let uid = [\u{1d7d9}] // use Unicode for the id operator 𝟙
 #let empty = [#text(font: "Euler Math", [\u{ea7b}])]
-#let Re = math.op("Re", limits: true)
-#let Im = math.op("Im", limits: true)
 // Redefine cal() to use Euler Math's calligraphic glyphs.
 // Only affects cal(...) expressions; all other math is unchanged.
 // The font can be downloaded at https://ctan.org/pkg/euler-math
@@ -108,9 +114,9 @@
   counter("bibs").step()
 
   context if main {
-    [#bibliography("ref.bib", title: title) <main-bib>]
+    [#bibliography("ref.bib", title: title, style: "chicago-author-date") <main-bib>]
   } else if query(<main-bib>) == () {
-    bibliography("ref.bib", title: title)
+    bibliography("ref.bib", title: title, style: "chicago-author-date")
   }
 }
 
@@ -192,6 +198,7 @@
 // Document template for main file.
 
 #let template-doc(doc) = [
+  #set bibliography(style: "chicago-author-date")
   #show link: underline
   #show: thmrules
   #show heading.where(level: 1): it => {
@@ -250,7 +257,7 @@
   // #load-bib(main: false)
 ]
 
-#let template-doc-main(main-doc, doc-title: "Title") = [
+#let template-doc-main(main-doc, doc-title: "Title", author: "Wentao Li") = [
   #set page(paper: "a4", numbering: "1 of 1", margin: (x: 2cm))
   // Set document title and its appearance
   #set document(title: [#doc-title], date: auto)
@@ -259,6 +266,7 @@
 
   // Add date after the title
   #align(center)[
+    #author \
     #datetime.today().display("[month repr:short] [day padding:none], [year]")
   ]
   #block(height: 0.5em)

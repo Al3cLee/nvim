@@ -183,6 +183,21 @@ local snippets = {
     }
   ),
 
+  s(
+    {
+      trig = "(%a+)(cal)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+      condition = cond.in_markdown_math,
+    },
+    fmta("\\mathcal{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    })
+  ),
+
   s({
     wordTrig = false,
     trig = "invs",
@@ -249,7 +264,7 @@ local snippets = {
     }
   ),
 
-  s({ wordTrig = false, trig = "eq", dscr = "=", snippetType = "autosnippet", condition = cond.in_markdown_math }, {
+  s({ wordTrig = true, trig = "equal", dscr = "=", snippetType = "autosnippet", condition = cond.in_markdown_math }, {
     t({ "=" }),
   }),
 

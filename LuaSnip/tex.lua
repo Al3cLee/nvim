@@ -170,7 +170,7 @@ local snippets = {
     t({ "\\times" }),
   }),
 
-  s({ wordTrig = false, trig = "eq", dscr = "=", snippetType = "autosnippet", condition = cond.in_latex_math }, {
+  s({ wordTrig = true, trig = "equal", dscr = "=", snippetType = "autosnippet", condition = cond.in_latex_math }, {
     t({ "=" }),
   }),
 

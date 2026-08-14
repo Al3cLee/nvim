@@ -13,7 +13,11 @@ terminal emulator.
 - The requirements of LazyVim
 - `npm`
 - Any language you want to use
-- The [Euler Math](https://ctan.org/pkg/euler-math) and [Lato](https://www.latofonts.com) fonts discoverable by `typst`
+
+Fonts: configuration for `typst` is set in `./templates/preamble_standalone.typ` and `./templates/typst_templates.typ` by the variables `font_config` and `font_config_touying`. Currently the dependencies include:
+
+- The [Euler Math](https://ctan.org/pkg/euler-math) and [Lato](https://www.latofonts.com) fonts
+- If you input any CJK content, the [Source Han Serif SC](https://github.com/adobe-fonts/source-han-serif) font is required
 
 ## Wrapping
 
